@@ -34,6 +34,17 @@ class Dashboard extends CI_Controller
 		$this->load->view('footer');
 	}
 
-
+	public function inventory()
+	{
+		$object['controller'] = $this;
+		$object['active_tab'] = "Inventory";
+		$object['title'] = "Inventory";
+		$this->load->view('header',$object);
+		$this->load->view('top_header');
+		$this->load->view('side_menu');
+		$this->load->view('inventory');
+		$this->load->view('footer');
+		$this->load->view('js/inventoryjs');
+	}
 
 }
