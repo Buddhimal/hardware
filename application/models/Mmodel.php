@@ -14,5 +14,14 @@ class MModel extends CI_Model
         return $this->db->query($query);
     }
 
+    public function get_item_list()
+    {
+        $result = $this->db
+            ->select("*")
+            ->from('item_master')
+            ->get();
+
+        return $result;
+    }
 
 }
