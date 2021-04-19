@@ -61,7 +61,7 @@
                     </div>
                    
                     <div class="form-group col-sm-2">
-                        <select class="form-control select2bs4">
+                        <select id="searchById" class="form-control select2bs4">
                             <option disabled="disabled" selected="selected">Select an Option</option>
                             <option>Item Code</option>
                             <option>Price</option>
@@ -73,9 +73,7 @@
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group col-sm-2">
-                        <select class="form-control select2bs4">
-                            <option>1011</option>
-                            <option>1100</option>
+                        <select id="idListId" class="form-control select2bs4">
                         </select>
                     </div>
                     
