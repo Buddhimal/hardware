@@ -36,6 +36,12 @@ class Dashboard extends CI_Controller
 
 	public function inventory()
 	{
+
+        $param_data["from"]=$this->input->get_post('from');
+        $param_data["to"]=$this->input->get_post('to');
+        $param_data["search_by"]=$this->input->get_post('search_by');
+        $param_data["param"]=$this->input->get_post('param');
+
 		$object['controller'] = $this;
 		$object['active_tab'] = "Inventory";
 		$object['title'] = "Inventory";
@@ -44,7 +50,7 @@ class Dashboard extends CI_Controller
 		$this->load->view('side_menu');
 
         $data['items'] = $this->mmodel->get_item_list();
-        $data['inventory'] = $this->mmodel->get_inventory();
+        $data['inventory'] = $this->mmodel->get_inventory($param_data);
 
 		$this->load->view('inventory');
 		$this->load->view('footer');
