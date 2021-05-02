@@ -14,41 +14,6 @@ class MModel extends CI_Model
         return $this->db->query($query);
     }
 
-    public function insert($table,$data){
-
-        $this->db->insert($table,$data);
-        return ($this->db->affected_rows() >= 0);
-    }
-
-    public function get_all($table){
-        $result = $this->db
-            ->select("*")
-            ->from($table)
-            ->get();
-
-        return $result;
-    }
-
-    public function get_all_by_id($table, $id){
-        $result = $this->db
-            ->select("*")
-            ->from($table)
-            ->where('id',$id)
-            ->get();
-
-        return $result;
-    }
-
-    public function get_invoice_details($table, $id){
-        $result = $this->db
-            ->select("*")
-            ->from($table)
-            ->where('invoice_id',$id)
-            ->get();
-
-        return $result;
-    }
-
     public function get_item_list()
     {
         $result = $this->db

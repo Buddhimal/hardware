@@ -142,6 +142,9 @@
             }
         });
     });
+    // $('#btnSearch').click(function(){
+    //     alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+    // });
     $('#example1_info').css('display','none');
   });
 </script>
