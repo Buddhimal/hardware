@@ -27,10 +27,6 @@
 <!-- <script src="<?php echo base_url()?>dist/js/demo.js"></script> -->
 <!-- Page specific script -->
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -94,9 +90,9 @@
         });
 
     });
-    
+
     $('#searchById').change(function(){
-        
+
         $.ajax({
             url: "../dummydata/InventoryIdList.json",
             async: false,
