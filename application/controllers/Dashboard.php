@@ -104,4 +104,35 @@ class Dashboard extends CI_Controller
 		$this->load->view('footer');
 		$this->load->view('js/salestransactionsjs');
 	}
+
+	public function add_sku($msg = null, $alert_type = "alert-success"){
+        $object['controller'] = $this;
+        $object['active_tab'] = "Inventory";
+        $object['title'] = "Inventory";
+        $this->load->view('header',$object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+        $data["msg"] = $msg;
+        $data["alert_type"] = $alert_type;
+
+//        $this->load->view('add_sku',$data);
+        $this->load->view('footer');
+
+    }
+
+	public function save_sku(){
+
+        $data["sku_code"] = $this->input->get_post('sku_code');
+        $data["sku_name"] = $this->input->get_post('sku_name');
+        $data['last_modified_at'] = date('Y-m-d H:i:s');
+        $data['last_modified_by'] = $this->session->userdata('name');
+
+        if($this->mmodel->insert('item_sku',$data)){
+            $this->add_sku('SKU Added Successfully');
+        } else{
+            $this->add_sku('SKU failed to Insert','alert-danger');
+        }
+
+	}
+
 }
