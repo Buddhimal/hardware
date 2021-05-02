@@ -52,7 +52,16 @@ if(!isset($active_main_tab))
 								<p>User Groups</p>
 							</a>
 						</li>
+						
 					</ul>
+				</li>
+				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/inventory" class="nav-link <?php if($active_tab=='Inventory') echo "active" ?>">
+						<i class="nav-icon fas fa-list-alt"></i>
+						<p>
+							Inventory
+						</p>
+					</a>
 				</li>
 			</ul>
 		</nav>
