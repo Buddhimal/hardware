@@ -29,7 +29,37 @@ class MModel extends CI_Model
         return $result;
     }
 
+    public function get_all_by_id($table, $id){
+        $result = $this->db
+            ->select("*")
+            ->from($table)
+            ->where('id',$id)
+            ->get();
+
+        return $result;
+    }
+
+    public function get_invoice_details($table, $id){
+        $result = $this->db
+            ->select("*")
+            ->from($table)
+            ->where('invoice_id',$id)
+            ->get();
+
+        return $result;
+    }
+
     public function get_item_list()
+    {
+        $result = $this->db
+            ->select("*")
+            ->from('item_master')
+            ->get();
+
+        return $result;
+    }
+
+    public function get_customer_details()
     {
         $result = $this->db
             ->select("*")
