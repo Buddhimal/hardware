@@ -58,6 +58,42 @@
       showOtherMonths: true,
       selectOtherMonths: true
     });
+    $('#btnSearch').click(function(){
+        alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+
+        $.ajax({
+            url: "../dummydata/InventoryIdList.json",
+            data: "{ bookingId : " + 1 + "  }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            async: false,
+            success: function (data){
+              //alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+              $("#example1").DataTable({
+      "ajax": '<?php echo base_url()?>dummydata/InventoryIdList.json'
+      //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    })
+
+            }
+        });
+
+    });
+
+    $('#searchById').change(function(){
+
+        $.ajax({
+            url: "../dummydata/InventoryIdList.json",
+            async: false,
+            success: function (data){
+              //alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+              $('#idListId').empty();
+              $.each(data.data, function(idx, item) {
+                $('#idListId').append(new Option(item, idx))
+              });
+
+            }
+        });
+    });
       $( "#txttodate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
 

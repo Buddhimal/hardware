@@ -208,5 +208,52 @@ class Dashboard extends CI_Controller
         }
 
 	}
-
+	public function invoicelist()
+	{
+		$object['controller'] = $this;
+		$object['active_tab'] = "InvoiceList";
+		$object['title'] = "Invoice List";
+		$this->load->view('header',$object);
+		$this->load->view('top_header');
+		$this->load->view('side_menu');
+		$this->load->view('invoicelist');
+		$this->load->view('footer');
+		$this->load->view('js/invoicelistjs');
+	}
+	public function invoiceModal()
+	{
+		$object['controller'] = $this;
+		//$object['active_tab'] = "InvoiceList";
+		$object['title'] = "Invoice Modal";
+		$this->load->view('header',$object);
+		//$this->load->view('top_header');
+		//$this->load->view('side_menu');
+		$this->load->view('myModal');
+		$this->load->view('footer');
+		$this->load->view('js/invoicelistjs');
+	}
+	public function itemsaleshistory()
+	{
+		$object['controller'] = $this;
+		$object['active_tab'] = "Itemsaleshistory";
+		$object['title'] = "Item Sales History";
+		$this->load->view('header',$object);
+		$this->load->view('top_header');
+		$this->load->view('side_menu');
+		$this->load->view('itemsaleshistory');
+		$this->load->view('footer');
+		$this->load->view('js/itemsaleshistoryjs');
+	}
+	public function salestransaction()
+	{
+		$object['controller'] = $this;
+		$object['active_tab'] = "Salestransaction";
+		$object['title'] = "Sales Transaction";
+		$this->load->view('header',$object);
+		$this->load->view('top_header');
+		$this->load->view('side_menu');
+		$this->load->view('salestransaction');
+		$this->load->view('footer');
+		$this->load->view('js/salestransactionsjs');
+	}
 }
