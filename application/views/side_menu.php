@@ -63,6 +63,30 @@ if(!isset($active_main_tab))
 						</p>
 					</a>
 				</li>
+				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/invoicelist" class="nav-link <?php if($active_tab=='InvoiceList') echo "active" ?>">
+						<i class="nav-icon fa fa-sticky-note"></i>
+						<p>
+							Invoice List
+						</p>
+					</a>
+				</li>
+				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/itemsaleshistory" class="nav-link <?php if($active_tab=='Itemsaleshistory') echo "active" ?>">
+						<i class="nav-icon fa fa-hourglass-start"></i>
+						<p>
+							Item Sales History
+						</p>
+					</a>
+				</li>
+				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/salestransaction" class="nav-link <?php if($active_tab=='Salestransaction') echo "active" ?>">
+						<i class="nav-icon fa fa-shopping-cart"></i>
+						<p>
+						Sales Transaction
+						</p>
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

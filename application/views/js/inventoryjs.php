@@ -27,6 +27,10 @@
 <!-- <script src="<?php echo base_url()?>dist/js/demo.js"></script> -->
 <!-- Page specific script -->
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -39,16 +43,39 @@
     // $('#example1').DataTable( {
     //     "ajax": '<?php echo base_url()?>dummydata/inventorydata.txt'
     // } );
-    $('#reservationfromdate').datetimepicker({
-	  "autoclose": false,
-	  "format": "YYYY-MM-DD"
+    // $('#reservationfromdate').datetimepicker({
+	  // "autoclose": false,
+	  // "format": "YYYY-MM-DD"
+    // });
+    // $('#reservationtodate').datetimepicker({
+	  // "autoclose": true,
+	  // "format": "YYYY-MM-DD"
+    // });
+
+    $( "#txtfromdate" ).datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true
     });
-    $('#reservationtodate').datetimepicker({
-	  "autoclose": true,
-	  "format": "YYYY-MM-DD"
+      $( "#txtfromdate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+      $( "#txttodate" ).datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true
     });
+      $( "#txttodate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+
     $('#btnSearch').click(function(){
-        alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+        //alert($('#txtfromdate').val() +" - "+ $('#txttodate').val());
+        if($('#txtfromdate').val() == '' || typeof($('#txtfromdate').val())== 'undefined'){
+            alert('From date should not empty');
+        }
+        else if($('#txttodate').val() == '' || typeof($('#txttodate').val())== 'undefined'){
+            alert('To date should not empty');
+        }
+        else if($('#txtfromdate').val() > $('#txttodate').val()){
+            alert('From date should less than To date');
+        }
 
         $.ajax({
             url: "../dummydata/InventoryIdList.json",

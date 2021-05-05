@@ -34,12 +34,14 @@
                 </div>
         
         <div class="col-sm-2">
+        <input type="text" id="txtfromdate" size="30" class="form-control">
+<!--         
                         <div class="input-group date" id="reservationfromdate" data-target-input="nearest">
                             <input type="text" id="txtfromdate" class="form-control datetimepicker-input" data-target="#reservationfromdate"/>
                             <div class="input-group-append" data-target="#reservationfromdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                        </div>
+                        </div> -->
         </div>
 
         <div id="block2"  class="form-group col-sm-1.5">
@@ -47,12 +49,13 @@
                     </div>
                    
                     <div class="form-group col-sm-2">
-                    <div class="input-group date" id="reservationtodate" data-target-input="nearest">
+                    <input type="text" id="txttodate" size="30" class="form-control">
+                    <!-- <div class="input-group date" id="reservationtodate" data-target-input="nearest">
                         <input type="text" id="txttodate" class="form-control datetimepicker-input" data-target="#reservationtodate"/>
                         <div class="input-group-append" data-target="#reservationtodate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
-                    </div>
+                    </div> -->
                     </div>
 
 

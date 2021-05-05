@@ -51,5 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['load_inventory'] = 'dashboard/inventory';
+$route['load_invoice_list'] = 'dashboard/invoicelist';
+$route['load_invoiceModal_list'] = 'dashboard/myModal';
+$route['load_itemsaleshistory'] = 'dashboard/itemsaleshistory';
+$route['load_salestransaction'] = 'dashboard/salestransaction';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
