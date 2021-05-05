@@ -38,11 +38,18 @@ class Dashboard extends CI_Controller
 	$object['controller'] = $this;
 	$object['active_tab'] = "Invoice";
 	$object['title'] = "Invoice";
+
+	$trans_id= $this->input->get("id");
+
+	$data["customer_details"]=$this->mmodel->get_all_by_id("invoice_header", $trans_id);
+	$data["invoice_details"]=$this->mmodel->get_invoice_details('invoice_lines', $trans_id);
+
 	$this->load->view('header',$object);
 	$this->load->view('top_header');
 	$this->load->view('side_menu');
-	$this->load->view('usercash_invoice');
+	$this->load->view('usercash_invoice', $data);
 	$this->load->view('footer');
+
 	}
 
 	public function inventory()
