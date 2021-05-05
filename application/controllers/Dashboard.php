@@ -33,44 +33,29 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard');
 		$this->load->view('footer');
 	}
-
-	public function inventory()
+	public function Uinvoice()
 	{
-
-        $param_data["from"]=$this->input->get_post('from');
-        $param_data["to"]=$this->input->get_post('to');
-        $param_data["search_by"]=$this->input->get_post('search_by');
-        $param_data["param"]=$this->input->get_post('param');
-
-		$object['controller'] = $this;
-		$object['active_tab'] = "Inventory";
-		$object['title'] = "Inventory";
-		$this->load->view('header',$object);
-		$this->load->view('top_header');
-		$this->load->view('side_menu');
-
-        $data['items'] = $this->mmodel->get_item_list();
-        $data['inventory'] = $this->mmodel->get_inventory($param_data);
-
-		$this->load->view('inventory');
-		$this->load->view('footer');
-		$this->load->view('js/inventoryjs');
+	$object['controller'] = $this;
+	$object['active_tab'] = "Invoice";
+	$object['title'] = "Invoice";
+	$this->load->view('header',$object);
+	$this->load->view('top_header');
+	$this->load->view('side_menu');
+	$this->load->view('usercash_invoice');
+	$this->load->view('footer');
 	}
 
-	public function add_sku($msg = null, $alert_type = "alert-success"){
-        $object['controller'] = $this;
-        $object['active_tab'] = "Inventory";
-        $object['title'] = "Inventory";
-        $this->load->view('header',$object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
-        $data["msg"] = $msg;
-        $data["alert_type"] = $alert_type;
-
-//        $this->load->view('add_sku',$data);
-        $this->load->view('footer');
-
-    }
+	public function CreateSKU()
+	{
+	$object['controller'] = $this;
+	$object['active_tab'] = "createSKU";
+	$object['title'] = "create_SKU";
+	$this->load->view('header',$object);
+	$this->load->view('top_header');
+	$this->load->view('side_menu');
+	$this->load->view('create_SKU');
+	$this->load->view('footer');
+	}
 
 	public function save_sku(){
 
