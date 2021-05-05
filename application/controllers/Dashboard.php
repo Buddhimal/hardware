@@ -33,18 +33,17 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard');
 		$this->load->view('footer');
 	}
-
-    public function Uinvoice()
-    {
-        $object['controller'] = $this;
-        $object['active_tab'] = "Invoice";
-        $object['title'] = "Invoice";
-        $this->load->view('header', $object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
-        $this->load->view('usercash_invoice');
-        $this->load->view('footer');
-    }
+	public function Uinvoice()
+	{
+	$object['controller'] = $this;
+	$object['active_tab'] = "Invoice";
+	$object['title'] = "Invoice";
+	$this->load->view('header',$object);
+	$this->load->view('top_header');
+	$this->load->view('side_menu');
+	$this->load->view('usercash_invoice');
+	$this->load->view('footer');
+	}
 
     public function inventory()
     {
