@@ -49,6 +49,34 @@ class MModel extends CI_Model
         return $result;
     }
 
+    public function get_salesHistory_table($param_data){
+        
+        $from = $param_data["from"];
+        $to = $param_data["to"];
+        $type = $param_data["search_by"];
+        $param = $param_data["param"];
+
+        $query = "
+                                    SELECT
+                                        *
+                                    FROM
+                                        invoice_header AS inh
+                                        INNER JOIN invoice_lines AS inl ON inh.id = inl.invoice_id";
+
+        if (isset($param_data['from']))
+            $query.= " AND inh.date >= '$from'";
+        if (isset($param_data['to']))
+            $query.= " AND inh.date <= '$to'";
+        if (isset($type) && $type =='price')
+            $query.= " AND inh.gross_total = '$param'";
+        if (isset($type) && $type =='type')
+            $query.= " AND inl.type LIKE '%$param%'";
+
+
+        $result = $this->db->query($query);
+        return $result;
+    }
+
     public function get_item_list()
     {
         $result = $this->db

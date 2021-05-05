@@ -54,3 +54,4 @@ $route['load_inventory'] = 'dashboard/inventory';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['load_inventory'] = 'dashboard/invoice';
+$route['sales_history'] = 'dashboard/SalesHistory';

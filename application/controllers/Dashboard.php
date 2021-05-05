@@ -79,4 +79,24 @@ class Dashboard extends CI_Controller
 
 	}
 
+	public function SalesHistory()
+	{
+	$object['controller'] = $this;
+	$object['active_tab'] = "Invoice";
+	$object['title'] = "Invoice";
+
+	$param_data = '';
+
+	//$data["customer_details"]=$this->mmodel->get_all_by_id("invoice_header", $trans_id);
+	$data["sales_history_table"]=$this->mmodel->get_salesHistory_table($param_data);
+	// var_dump($data["sales_history_table"]-> result());
+
+	$this->load->view('header',$object);
+	$this->load->view('top_header');
+	$this->load->view('side_menu');
+	$this->load->view('usercash_invoice', $data);
+	$this->load->view('footer');
+
+	}
+
 }
