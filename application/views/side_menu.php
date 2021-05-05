@@ -59,6 +59,44 @@ if(!isset($active_main_tab))
 					<a href="<?php echo base_url()?>dashboard/inventory" class="nav-link <?php if($active_tab=='Inventory') echo "active" ?>">
 						<i class="nav-icon fas fa-list-alt"></i>
 						<p>
+							Invoice
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview ">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>dashboard/Uinvoice" class="nav-link <?php if($active_tab=='Invoice') echo "active" ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Generate Invoice</p>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+
+				<li class="nav-item has-treeview <?php if($active_main_tab=='Administration') echo "menu-open" ?> ">
+					<a href="#" class="nav-link <?php if($active_main_tab=='Administration') echo "active" ?>">
+						<i class="nav-icon fas fa-cogs"></i>
+						<p>
+							SKU
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview ">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>dashboard/CreateSKU" class="nav-link <?php if($active_tab=='CreateSKU') echo "active" ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Create SKU</p>
+							</a>
+						</li>
+
+
+					</ul>
+				</li>
+				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/inventory" class="nav-link <?php if($active_tab=='Inventory') echo "active" ?>">
+						<i class="nav-icon fas fa-list-alt"></i>
+						<p>
 							Inventory
 						</p>
 					</a>
