@@ -62,7 +62,7 @@ class Dashboard extends CI_Controller
         $this->load->view('side_menu');
 
         $data['items'] = $this->mmodel->get_item_list();
-        $data['inventory'] = $this->mmodel->get_inventory();
+        $data['inventory'] = $this->mmodel->get_inventory($param_data);
 
         $this->load->view('inventory');
         $this->load->view('footer');
