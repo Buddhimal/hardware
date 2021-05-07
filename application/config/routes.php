@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
-$route['load_inventory'] = 'dashboard/inventory';
+$route['inventory'] = 'dashboard/inventory';
 $route['load_invoice_list'] = 'dashboard/invoicelist';
 $route['load_invoiceModal_list'] = 'dashboard/myModal';
 $route['load_itemsaleshistory'] = 'dashboard/itemsaleshistory';

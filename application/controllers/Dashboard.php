@@ -64,7 +64,7 @@ class Dashboard extends CI_Controller
         $data['items'] = $this->mmodel->get_item_list();
         $data['inventory'] = $this->mmodel->get_inventory($param_data);
 
-        $this->load->view('inventory');
+        $this->load->view('inventory',$data);
         $this->load->view('footer');
         $this->load->view('js/inventoryjs');
     }
