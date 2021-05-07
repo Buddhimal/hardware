@@ -1,4 +1,41 @@
-<body class="sidebar-mini layout-fixed">
+
+<style type="text/css">
+    .loader {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: url("<?php echo base_url()?>dist/img/loading-spinner.gif") no-repeat center center;
+        z-index: 10000;
+    }
+    /*.overlay{*/
+    /*    display: none;*/
+    /*    position: fixed;*/
+    /*    width: 100%;*/
+    /*    height: 100%;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    z-index: 999;*/
+    /*    background: url("*/<?php //echo base_url()?>/*dist/img/loading-spinner.gif") center no-repeat;*/
+    /*}*/
+    /* Turn off scrollbar when body element has the loading class */
+    /*body.loader{*/
+    /*    overflow: hidden;*/
+    /*}*/
+    /* Make spinner image visible when body element has the loading class */
+    /*body.loading .overlay{*/
+    /*    display: block;*/
+    /*}*/
+
+</style>
+
+
+<body class="sidebar-mini layout-fixed loader">
+<div id="loader"></div>
+
 <!-- Site wrapper -->
 <div class="wrapper">
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light ">

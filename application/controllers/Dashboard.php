@@ -64,7 +64,7 @@ class Dashboard extends CI_Controller
         $data['items'] = $this->mmodel->get_item_list();
         $data['inventory'] = $this->mmodel->get_inventory($param_data);
 
-        $this->load->view('inventory',$data);
+        $this->load->view('inventory', $data);
         $this->load->view('footer');
         $this->load->view('js/inventoryjs');
     }
@@ -151,7 +151,12 @@ class Dashboard extends CI_Controller
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $this->load->view('salestransaction');
+
+        $data["inv_number"]=$this->mmodel->generate_invoice_number();
+        $data["items"]=$this->mmodel->get_item_list();
+        $data["inv_date"]=date('Y-m-d');
+
+        $this->load->view('salestransaction',$data);
         $this->load->view('footer');
         $this->load->view('js/salestransactionsjs');
     }
@@ -182,6 +187,23 @@ class Dashboard extends CI_Controller
         } else {
             $this->add_sku('SKU failed to Insert', 'alert-danger');
         }
+    }
+
+    public function save_transaction()
+    {
+        var_dump($this->input->post());
+        die();
+    }
+
+
+    public function get_item_details()
+    {
+        $item_code = $this->input->get('item_code');
+
+        $item_details = $this->mmodel->get_item_details_for_transaction($item_code);
+
+        echo json_encode($item_details->row());
+
     }
 
 }
