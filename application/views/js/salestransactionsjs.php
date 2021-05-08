@@ -3,24 +3,62 @@
 <script src="<?php echo base_url() ?>plugins/daterangepicker/daterangepicker.js"></script>
 
 <script>
-
-    var baseUrl = "<?php echo base_url()?>";
+    var baseUrl = "<?php echo base_url() ?>";
 
     const loadingWidget = {
-        show: function () {
+        show: function() {
             $("#loader").addClass("loader");
         },
-        hide: function () {
+        hide: function() {
             $("#loader").removeClass("loader");
         },
     };
 
-    (function ($) {
+    var myTableArray = [];
+
+    function removeRecord(itemCode) {
+        // console.log(myTableArray);
+        // let index = myTableArray.findIndex(e => e[0] == itemCode);
+        // if (index > -1) {
+        //     myTableArray.splice(index, 1);
+        // }
+        // console.log(myTableArray);
+
+        var total = 0;
+        var qty = 1;
+        var discount = 0;
+        var discountPct = 0;
+        var totalAfterDiscount = 0;
+
+        let parentId = 'item'+itemCode;
+
+        let totalQty = $("#total_qty");
+        let grossTotal = $("#gross_total");
+        let item_discount = $("#item_discount");
+        let discountTotal = $("#total_discount");
+        let qtyTotal = $("#total_qty");
+
+
+        totalQty.val(totalQty.val() - $('#'+parentId+'> .qty').html());
+        grossTotal.val(grossTotal.val() - ( $('#'+parentId+'> .selling_price').html() * $('#'+parentId+'> .qty').html()));
+        $('#net_total').val(grossTotal.val() - $('#total_discount').val());
+        // $("#gross_total").val(grossTotal);
+        // $("#total_qty").val(qtyTotal);
+        // $("#total_discount").val(discountTotal);
+        // $("#net_total").val(grossTotal - discountTotal);
+
+        $('#item' + itemCode).remove();
+
+    }
+
+
+    (function($) {
         "use strict";
-        $(function () {
+        $(function() {
 
             const salesTransObj = {
                 $btnAdd: $("#btn_add"),
+                $btnRemove: $("#btn_add"),
                 $btnSaveTans: $("#btn_save_tans"),
                 $txt_gross_total: $("#gross_total"),
                 $txt_total_qty: $("#total_qty"),
@@ -44,19 +82,20 @@
                 $netTotal: 0,
                 $spinner: $("#loader"),
 
-                init: function () {
+                init: function() {
                     this.handleEvents();
                 },
-                handleEvents: function () {
+                handleEvents: function() {
                     const context = this;
-                    this.$btnAdd.on("click", function (e) {
+                    this.$btnAdd.on("click", function(e) {
                         e.preventDefault();
                         context.addNewTranRecord();
                     });
-                    this.$btnSaveTans.on("click", function (e) {
+
+                    this.$btnSaveTans.on("click", function(e) {
                         e.preventDefault();
 
-                        if ($('#example1 tbody tr').length > 0){
+                        if ($('#example1 tbody tr').length > 0) {
                             Swal.fire({
                                 title: 'Are you sure?',
                                 icon: 'warning',
@@ -77,24 +116,25 @@
                             })
                         }
                     });
+
                 },
-                addNewTranRecord: function () {
+                addNewTranRecord: function() {
                     this.getItemDetails();
                 },
-                getItemDetails: function () {
+                getItemDetails: function() {
                     loadingWidget.show();
                     const context = this;
                     $.get(
                         baseUrl + "get_item_details?item_code=" + context.$item_code.val(),
-                        function (res) {
+                        function(res) {
                             context.addNewRecord($.parseJSON(res));
                         }
-                    ).fail(function (error) {
+                    ).fail(function(error) {
                         console.log("error", error);
                         loadingWidget.hide();
                     });
                 },
-                addNewRecord: function (data) {
+                addNewRecord: function(data) {
                     var total = 0;
                     var qty = 1;
                     var discount = 0;
@@ -120,18 +160,19 @@
                     this.$qtyTotal += Number(qty);
 
                     this.$table.append(
-                        "<tr class='data_row'>" +
-                        "<td class='item_code'>" + data.item_code + "</td>" +
-                        "<td>" + data.item_name + "</td>" +
-                        "<td>" + data.sku_name + "</td>" +
-                        "<td class='selling_price'>" + data.selling_price + "</td>" +
-                        "<td>" + data.unit_type + "</td>" +
-                        "<td class='qty'>" + qty + "</td>" +
-                        "<td class='discount_pct'>" + discountPct + "</td>" +
-                        "<td class='total_value'>" + totalAfterDiscount + "</td>" +
-                        "<td><img src='../dist/img/trash16x16.png'/></td>" +
-                        +"<tr>"
+                        `<tr class='data_row' id='item` + data.item_code + `' >` +
+                        `<td class='item_code'>` + data.item_code + `</td>` +
+                        `<td>` + data.item_name + `</td>` +
+                        `<td>` + data.sku_name + `</td>` +
+                        `<td class='selling_price'>` + data.selling_price + `</td>` +
+                        `<td>` + data.unit_type + `</td>` +
+                        `<td class='qty'>` + qty + `</td>` +
+                        `<td class='discount_pct'>` + discountPct + `</td>` +
+                        `<td class='total_value'>` + totalAfterDiscount + `</td>` +
+                        `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` + data.item_code + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` + `</td>` +
+                        +`<tr>`
                     )
+
 
                     this.$txt_gross_total.val(this.$grossTotal);
                     this.$txt_total_qty.val(this.$qtyTotal);
@@ -140,8 +181,7 @@
 
                     loadingWidget.hide();
                 },
-                saveTranRecords: function () {
-                    var myTableArray = [];
+                saveTranRecords: function() {
 
                     $('#example1 tbody tr').each(function() {
                         var arrayOfThisRow = [];
@@ -155,8 +195,7 @@
                     });
 
                     $.post(
-                        baseUrl+"save_transaction",
-                        {
+                        baseUrl + "save_transaction", {
                             invoice_number: this.$invNo.val(),
                             inv_date: this.$invDate.val(),
                             cus_name: this.$cusName.val(),
@@ -169,12 +208,12 @@
                             net_total: this.$netTotal,
                             item_list: JSON.stringify(myTableArray)
                         },
-                        function (result) {
-                            if($.parseJSON(result).status==1){
+                        function(result) {
+                            if ($.parseJSON(result).status == 1) {
                                 Swal.fire({
                                     title: 'Transaction added Successfully...',
                                     confirmButtonText: `OK`,
-                                    icon:'success'
+                                    icon: 'success'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         location.reload();
@@ -182,7 +221,7 @@
                                 })
                             }
                         }
-                    ).fail(function (error) {
+                    ).fail(function(error) {
                         console.log("error", error);
                         loadingWidget.hide();
                     });
@@ -194,6 +233,4 @@
         });
 
     })(jQuery);
-
-
 </script>
