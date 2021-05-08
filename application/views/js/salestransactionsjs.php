@@ -165,19 +165,22 @@
                             gross_total: this.$grossTotal,
                             total_qty: this.$qtyTotal,
                             tax_amt: this.$txt_tax_amt.val(),
-                            total_discount: this.$discountTotal,
-                            net_total: this.$netTotal,
+                            total_discount: this.$txt_total_discount.val(),
+                            net_total: this.$txt_net_total.val(),
                             item_list: JSON.stringify(myTableArray)
                         },
                         function (result) {
-                            if($.parseJSON(result).status==1){
+
+                            var res = $.parseJSON(result);
+
+                            if(res.status==1){
                                 Swal.fire({
                                     title: 'Transaction added Successfully...',
                                     confirmButtonText: `OK`,
                                     icon:'success'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        location.reload();
+                                        window.location.href = "<?php echo base_url()?>invoice?id="+res.trans_id;
                                     }
                                 })
                             }

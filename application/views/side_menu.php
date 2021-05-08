@@ -56,7 +56,7 @@ if(!isset($active_main_tab))
 					</ul>
 				</li>
 				<li class="nav-item has-treeview ">
-					<a href="<?php echo base_url()?>dashboard/inventory" class="nav-link <?php if($active_tab=='Inventory') echo "active" ?>">
+					<a href="#" class="nav-link <?php if($active_tab=='invoice') echo "active" ?>">
 						<i class="nav-icon fas fa-list-alt"></i>
 						<p>
 							Invoice
@@ -65,7 +65,7 @@ if(!isset($active_main_tab))
 					</a>
 					<ul class="nav nav-treeview ">
 						<li class="nav-item">
-							<a href="<?php echo base_url()?>dashboard/Uinvoice" class="nav-link <?php if($active_tab=='Invoice') echo "active" ?>">
+							<a href="<?php echo base_url()?>invoice" class="nav-link <?php if($active_tab=='Invoice') echo "active" ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Generate Invoice</p>
 							</a>
