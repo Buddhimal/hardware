@@ -62,6 +62,7 @@ $route['invoice'] = 'dashboard/create_invoice';
 $route['sales_history'] = 'dashboard/SalesHistory';
 $route['add_sku'] = 'dashboard/add_sku';
 $route['save_sku'] = 'dashboard/save_sku';
+$route['view_sku'] = 'dashboard/view_sku';
 
 
 //ajax routes
