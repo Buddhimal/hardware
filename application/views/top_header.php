@@ -11,29 +11,11 @@
         background: url("<?php echo base_url()?>dist/img/loading-spinner.gif") no-repeat center center;
         z-index: 10000;
     }
-    /*.overlay{*/
-    /*    display: none;*/
-    /*    position: fixed;*/
-    /*    width: 100%;*/
-    /*    height: 100%;*/
-    /*    top: 0;*/
-    /*    left: 0;*/
-    /*    z-index: 999;*/
-    /*    background: url("*/<?php //echo base_url()?>/*dist/img/loading-spinner.gif") center no-repeat;*/
-    /*}*/
-    /* Turn off scrollbar when body element has the loading class */
-    /*body.loader{*/
-    /*    overflow: hidden;*/
-    /*}*/
-    /* Make spinner image visible when body element has the loading class */
-    /*body.loading .overlay{*/
-    /*    display: block;*/
-    /*}*/
 
 </style>
 
 
-<body class="sidebar-mini layout-fixed loader">
+<body class="sidebar-mini layout-fixed">
 <div id="loader"></div>
 
 <!-- Site wrapper -->

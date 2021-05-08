@@ -144,6 +144,7 @@
                                             <th>Unit Price (Rs)</th>
                                             <th>Type</th>
                                             <th>Sales Qty</th>
+                                            <th>Discount %</th>
                                             <th>Total Price (Rs)</th>
                                             <th>Action</th>
                                         </tr>
@@ -206,7 +207,7 @@
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-info full-width">Save</button>
+                                            <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save</button>
                                             <button type="button" class="btn btn-default float-right">Cancel</button>
                                         </div>
                                         <!-- /.card-footer -->
@@ -220,6 +221,7 @@
         </section>
     </div>
 </div>
+
 
 
 

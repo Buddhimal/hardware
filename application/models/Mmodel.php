@@ -166,6 +166,20 @@ class MModel extends CI_Model
         return $invoice_number;
     }
 
+    public function save_transaction($header,$line_records){
+
+        if($this->db->insert('invoice_header', $header)){
+            $invoice_id = $this->db->insert_id();
+
+            foreach ($line_records as $lines){
+                $lines['invoice_id']= $invoice_id;
+                $this->db->insert('invoice_lines', $lines);
+            }
+            return true;
+        }
+        return false;
+    }
+
 
 
 }
