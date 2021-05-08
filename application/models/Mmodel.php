@@ -42,6 +42,17 @@ class MModel extends CI_Model
         return $result;
     }
 
+    public function get_where_count($table,$where){
+
+        $res=$this->db
+            ->select('*')
+            ->from($table)
+            ->where($where)
+            ->get();
+
+        return $res->num_rows();
+    }
+
     public function get_all_where($table, $where)
     {
         $result = $this->db
