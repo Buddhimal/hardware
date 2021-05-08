@@ -76,10 +76,6 @@
                                 text: 'please add records before submit!',
                             })
                         }
-
-
-
-
                     });
                 },
                 addNewTranRecord: function () {
