@@ -16,20 +16,13 @@
     };
 
     var myTableArray = [];
+    var total = 0;
+    var qty = 1;
+    var discount = 0;
+    var discountPct = 0;
+    var totalAfterDiscount = 0;
 
     function removeRecord(itemCode) {
-        // console.log(myTableArray);
-        // let index = myTableArray.findIndex(e => e[0] == itemCode);
-        // if (index > -1) {
-        //     myTableArray.splice(index, 1);
-        // }
-        // console.log(myTableArray);
-
-        var total = 0;
-        var qty = 1;
-        var discount = 0;
-        var discountPct = 0;
-        var totalAfterDiscount = 0;
 
         let parentId = 'item'+itemCode;
 
@@ -43,10 +36,6 @@
         totalQty.val(totalQty.val() - $('#'+parentId+'> .qty').html());
         grossTotal.val(grossTotal.val() - ( $('#'+parentId+'> .selling_price').html() * $('#'+parentId+'> .qty').html()));
         $('#net_total').val(grossTotal.val() - $('#total_discount').val());
-        // $("#gross_total").val(grossTotal);
-        // $("#total_qty").val(qtyTotal);
-        // $("#total_discount").val(discountTotal);
-        // $("#net_total").val(grossTotal - discountTotal);
 
         $('#item' + itemCode).remove();
 
@@ -135,11 +124,11 @@
                     });
                 },
                 addNewRecord: function (data) {
-                    var total = 0;
-                    var qty = 1;
-                    var discount = 0;
-                    var discountPct = 0;
-                    var totalAfterDiscount = 0;
+                    // var total = 0;
+                    // var qty = 1;
+                    // var discount = 0;
+                    // var discountPct = 0;
+                    // var totalAfterDiscount = 0;
 
                     if (this.$item_qty.val() > 0) {
                         total = data.selling_price * this.$item_qty.val();
