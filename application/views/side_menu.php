@@ -84,7 +84,7 @@ if(!isset($active_main_tab))
 					</a>
 					<ul class="nav nav-treeview ">
 						<li class="nav-item">
-							<a href="<?php echo base_url()?>dashboard/CreateSKU" class="nav-link <?php if($active_tab=='CreateSKU') echo "active" ?>">
+							<a href="<?php echo base_url()?>add_sku" class="nav-link <?php if($active_tab=='CreateSKU') echo "active" ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Create SKU</p>
 							</a>
