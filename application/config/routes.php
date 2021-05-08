@@ -58,8 +58,11 @@ $route['load_salestransaction'] = 'dashboard/salestransaction';
 $route['save_transaction'] = 'dashboard/save_transaction';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['load_inventory'] = 'dashboard/invoice';
+$route['invoice'] = 'dashboard/create_invoice';
 $route['sales_history'] = 'dashboard/SalesHistory';
+$route['add_sku'] = 'dashboard/add_sku';
+$route['save_sku'] = 'dashboard/save_sku';
+$route['view_sku'] = 'dashboard/view_sku';
 
 
 //ajax routes

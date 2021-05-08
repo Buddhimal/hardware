@@ -14,13 +14,14 @@ class MModel extends CI_Model
         return $this->db->query($query);
     }
 
-    public function insert($table,$data){
-
-        $this->db->insert($table,$data);
+    public function insert($table, $data)
+    {
+        $this->db->insert($table, $data);
         return ($this->db->affected_rows() >= 0);
     }
 
-    public function get_all($table){
+    public function get_all($table)
+    {
         $result = $this->db
             ->select("*")
             ->from($table)
@@ -29,17 +30,30 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_all_by_id($table, $id){
+    public function get_all_by_id($table, $id)
+    {
         $result = $this->db
             ->select("*")
             ->from($table)
-            ->where('id',$id)
+            ->where('id', $id)
             ->get();
 
         return $result;
     }
 
-    public function get_all_where($table, $where){
+    public function get_where_count($table,$where){
+
+        $res=$this->db
+            ->select('*')
+            ->from($table)
+            ->where($where)
+            ->get();
+
+        return $res->num_rows();
+    }
+
+    public function get_all_where($table, $where)
+    {
         $result = $this->db
             ->select("*")
             ->from($table)
@@ -49,13 +63,37 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_invoice_details($table, $id){
-        $result = $this->db
-            ->select("*")
-            ->from($table)
-            ->where('invoice_id',$id)
-            ->get();
-
+    public function get_invoice_details($id)
+    {
+        $result = $this->db->query(
+            "SELECT
+                ih.invoice_number, 
+                ih.invoice_date, 
+                il.item_code, 
+                il.unit_price, 
+                im.unit_type, 
+                im.item_name, 
+                sku.sku_code, 
+                sku.sku_name, 
+                il.discount,
+                il.qty,
+                il.total_price
+            FROM
+                invoice_header AS ih
+                INNER JOIN
+                invoice_lines AS il
+                ON 
+                    ih.id = il.invoice_id
+                INNER JOIN
+                item_master AS im
+                ON 
+                    il.item_code = im.item_code
+                INNER JOIN
+                item_sku AS sku
+                ON 
+                    im.item_sku_id = sku.id
+                WHERE ih.id=$id"
+        );
         return $result;
     }
 
@@ -79,7 +117,8 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_inventory($param_data){
+    public function get_inventory($param_data)
+    {
 
         $from = $param_data["from"];
         $to = $param_data["to"];
@@ -103,13 +142,13 @@ class MModel extends CI_Model
                                         AND im.item_sku_id = sku.id ";
 
         if (isset($param_data['from']))
-            $query.= " AND inv.date_purchased >= '$from'";
+            $query .= " AND inv.date_purchased >= '$from'";
         if (isset($param_data['to']))
-            $query.= " AND inv.date_purchased <= '$to'";
-        if (isset($type) && $type =='price')
-            $query.= " AND inv.purchased_price = '$param'";
-        if (isset($type) && $type =='item')
-            $query.= " AND im.item_code LIKE '%$param%'";
+            $query .= " AND inv.date_purchased <= '$to'";
+        if (isset($type) && $type == 'price')
+            $query .= " AND inv.purchased_price = '$param'";
+        if (isset($type) && $type == 'item')
+            $query .= " AND im.item_code LIKE '%$param%'";
 
 
         $result = $this->db->query($query);
@@ -117,7 +156,8 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_item_details_for_transaction($item_code){
+    public function get_item_details_for_transaction($item_code)
+    {
 
         return $this->db->query("
                     SELECT
@@ -145,6 +185,8 @@ class MModel extends CI_Model
 
     public function generate_invoice_number()
     {
+        $invoice_number = "";
+
         $this->db->select("id");
         $this->db->from("invoice_header");
         $this->db->limit(1);
@@ -166,20 +208,26 @@ class MModel extends CI_Model
         return $invoice_number;
     }
 
-    public function save_transaction($header,$line_records){
+    public function save_transaction($header, $line_records)
+    {
 
-        if($this->db->insert('invoice_header', $header)){
+        if ($this->db->insert('invoice_header', $header)) {
             $invoice_id = $this->db->insert_id();
 
-            foreach ($line_records as $lines){
-                $lines['invoice_id']= $invoice_id;
+            foreach ($line_records as $lines) {
+                $lines['invoice_id'] = $invoice_id;
                 $this->db->insert('invoice_lines', $lines);
             }
-            return true;
+            return $invoice_id;
         }
         return false;
     }
 
+    public function get_sku_list($param){
+
+        return $this->db->query("select * from item_sku where sku_code like '%$param%' OR sku_name like '%$param%'");
+
+    }
 
 
 }

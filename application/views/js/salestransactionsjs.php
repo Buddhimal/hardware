@@ -3,13 +3,14 @@
 <script src="<?php echo base_url() ?>plugins/daterangepicker/daterangepicker.js"></script>
 
 <script>
-    var baseUrl = "<?php echo base_url() ?>";
+
+    var baseUrl = "<?php echo base_url()?>";
 
     const loadingWidget = {
-        show: function() {
+        show: function () {
             $("#loader").addClass("loader");
         },
-        hide: function() {
+        hide: function () {
             $("#loader").removeClass("loader");
         },
     };
@@ -82,20 +83,19 @@
                 $netTotal: 0,
                 $spinner: $("#loader"),
 
-                init: function() {
+                init: function () {
                     this.handleEvents();
                 },
-                handleEvents: function() {
+                handleEvents: function () {
                     const context = this;
-                    this.$btnAdd.on("click", function(e) {
+                    this.$btnAdd.on("click", function (e) {
                         e.preventDefault();
                         context.addNewTranRecord();
                     });
-
-                    this.$btnSaveTans.on("click", function(e) {
+                    this.$btnSaveTans.on("click", function (e) {
                         e.preventDefault();
 
-                        if ($('#example1 tbody tr').length > 0) {
+                        if ($('#example1 tbody tr').length > 0){
                             Swal.fire({
                                 title: 'Are you sure?',
                                 icon: 'warning',
@@ -118,23 +118,23 @@
                     });
 
                 },
-                addNewTranRecord: function() {
+                addNewTranRecord: function () {
                     this.getItemDetails();
                 },
-                getItemDetails: function() {
+                getItemDetails: function () {
                     loadingWidget.show();
                     const context = this;
                     $.get(
                         baseUrl + "get_item_details?item_code=" + context.$item_code.val(),
-                        function(res) {
+                        function (res) {
                             context.addNewRecord($.parseJSON(res));
                         }
-                    ).fail(function(error) {
+                    ).fail(function (error) {
                         console.log("error", error);
                         loadingWidget.hide();
                     });
                 },
-                addNewRecord: function(data) {
+                addNewRecord: function (data) {
                     var total = 0;
                     var qty = 1;
                     var discount = 0;
@@ -173,7 +173,6 @@
                         +`<tr>`
                     )
 
-
                     this.$txt_gross_total.val(this.$grossTotal);
                     this.$txt_total_qty.val(this.$qtyTotal);
                     this.$txt_total_discount.val(this.$discountTotal);
@@ -195,7 +194,8 @@
                     });
 
                     $.post(
-                        baseUrl + "save_transaction", {
+                        baseUrl+"save_transaction",
+                        {
                             invoice_number: this.$invNo.val(),
                             inv_date: this.$invDate.val(),
                             cus_name: this.$cusName.val(),
@@ -204,24 +204,27 @@
                             gross_total: this.$grossTotal,
                             total_qty: this.$qtyTotal,
                             tax_amt: this.$txt_tax_amt.val(),
-                            total_discount: this.$discountTotal,
-                            net_total: this.$netTotal,
+                            total_discount: this.$txt_total_discount.val(),
+                            net_total: this.$txt_net_total.val(),
                             item_list: JSON.stringify(myTableArray)
                         },
-                        function(result) {
-                            if ($.parseJSON(result).status == 1) {
+                        function (result) {
+
+                            var res = $.parseJSON(result);
+
+                            if(res.status==1){
                                 Swal.fire({
                                     title: 'Transaction added Successfully...',
                                     confirmButtonText: `OK`,
-                                    icon: 'success'
+                                    icon:'success'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        location.reload();
+                                        window.location.href = "<?php echo base_url()?>invoice?id="+res.trans_id;
                                     }
                                 })
                             }
                         }
-                    ).fail(function(error) {
+                    ).fail(function (error) {
                         console.log("error", error);
                         loadingWidget.hide();
                     });
@@ -233,4 +236,6 @@
         });
 
     })(jQuery);
+
+
 </script>

@@ -34,18 +34,6 @@ class Dashboard extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function Uinvoice()
-    {
-        $object['controller'] = $this;
-        $object['active_tab'] = "Invoice";
-        $object['title'] = "Invoice";
-        $this->load->view('header', $object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
-        $this->load->view('usercash_invoice');
-        $this->load->view('footer');
-    }
-
     public function inventory()
     {
 
@@ -69,10 +57,11 @@ class Dashboard extends CI_Controller
         $this->load->view('js/inventoryjs');
     }
 
-    public function add_sku($msg = "hello", $alert_type = "alert-success")
+    public function add_sku($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
-        $object['active_tab'] = "Inventory";
+        $object['active_tab'] = "add_sku";
+        $object['active_main_tab'] = "add_sku";
         $object['title'] = "Inventory";
         $this->load->view('header', $object);
         $this->load->view('top_header');
@@ -80,13 +69,46 @@ class Dashboard extends CI_Controller
         $data["msg"] = $msg;
         $data["alert_type"] = $alert_type;
 
-//        $this->load->view('add_sku',$data);
+        $this->load->view('create_SKU', $data);
         $this->load->view('footer');
     }
 
-    public function UIinvoice()
+    public function save_sku()
     {
+        $data["sku_code"] = $this->input->get_post('sku_code');
+        $data["sku_name"] = $this->input->get_post('sku_name');
+        $data["status"] = $this->input->get_post('status');
+        $data['last_modified_at'] = date('Y-m-d H:i:s');
+        $data['last_modified_by'] = $this->session->userdata('name');
 
+        if ($this->mmodel->get_where_count('item_sku', array('sku_code' => $data["sku_code"])) > 0) {
+            $this->add_sku('SKU Code Already exists', 'alert-danger');
+        } else {
+            if ($this->mmodel->insert('item_sku', $data)) {
+                $this->add_sku('SKU Added Successfully');
+            } else {
+                $this->add_sku('SKU failed to Insert', 'alert-danger');
+            }
+        }
+    }
+
+    public function view_sku(){
+        $object['controller'] = $this;
+        $object['active_tab'] = "view_sku";
+        $object['title'] = "Inventory";
+
+        $search_param = $this->input->get_post('search_param');
+
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+        $data['sku_list'] = $this->mmodel->get_sku_list($search_param);
+        $this->load->view('view_SKU', $data);
+        $this->load->view('footer');
+    }
+
+    public function create_invoice()
+    {
         $object['controller'] = $this;
         $object['active_tab'] = "Invoice";
         $object['title'] = "Invoice";
@@ -94,14 +116,13 @@ class Dashboard extends CI_Controller
         $trans_id = $this->input->get("id");
 
         $data["customer_details"] = $this->mmodel->get_all_by_id("invoice_header", $trans_id);
-        $data["invoice_details"] = $this->mmodel->get_invoice_details('invoice_lines', $trans_id);
+        $data["invoice_details"] = $this->mmodel->get_invoice_details($trans_id);
 
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
         $this->load->view('usercash_invoice', $data);
         $this->load->view('footer');
-
     }
 
     public function invoicelist()
@@ -152,41 +173,13 @@ class Dashboard extends CI_Controller
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $data["inv_number"]=$this->mmodel->generate_invoice_number();
-        $data["items"]=$this->mmodel->get_item_list();
-        $data["inv_date"]=date('Y-m-d');
+        $data["inv_number"] = $this->mmodel->generate_invoice_number();
+        $data["items"] = $this->mmodel->get_item_list();
+        $data["inv_date"] = date('Y-m-d');
 
-        $this->load->view('salestransaction',$data);
+        $this->load->view('salestransaction', $data);
         $this->load->view('footer');
         $this->load->view('js/salestransactionsjs');
-    }
-
-
-    public function CreateSKU()
-    {
-        $object['controller'] = $this;
-        $object['active_tab'] = "createSKU";
-        $object['title'] = "create_SKU";
-        $this->load->view('header', $object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
-        $this->load->view('create_SKU');
-        $this->load->view('footer');
-    }
-
-
-    public function save_sku()
-    {
-        $data["sku_code"] = $this->input->get_post('sku_code');
-        $data["sku_name"] = $this->input->get_post('sku_name');
-        $data['last_modified_at'] = date('Y-m-d H:i:s');
-        $data['last_modified_by'] = $this->session->userdata('name');
-
-        if ($this->mmodel->insert('item_sku', $data)) {
-            $this->add_sku('SKU Added Successfully');
-        } else {
-            $this->add_sku('SKU failed to Insert', 'alert-danger');
-        }
     }
 
     public function save_transaction()
@@ -221,13 +214,14 @@ class Dashboard extends CI_Controller
 
         $data['status'] = 0;
 
-        if($this->mmodel->save_transaction($header,$line_records)){
+        $trans_id = $this->mmodel->save_transaction($header, $line_records);
+
+        if ($trans_id) {
             $data['status'] = 1;
+            $data['trans_id'] = $trans_id;
         }
 
         echo json_encode($data);
-
-
     }
 
 
