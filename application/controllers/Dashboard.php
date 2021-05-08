@@ -34,18 +34,6 @@ class Dashboard extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function Uinvoice()
-    {
-        $object['controller'] = $this;
-        $object['active_tab'] = "Invoice";
-        $object['title'] = "Invoice";
-        $this->load->view('header', $object);
-        $this->load->view('top_header');
-        $this->load->view('side_menu');
-        $this->load->view('usercash_invoice');
-        $this->load->view('footer');
-    }
-
     public function inventory()
     {
 
@@ -69,7 +57,7 @@ class Dashboard extends CI_Controller
         $this->load->view('js/inventoryjs');
     }
 
-    public function add_sku($msg = "hello", $alert_type = "alert-success")
+    public function add_sku($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
         $object['active_tab'] = "Inventory";
@@ -84,9 +72,8 @@ class Dashboard extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function UIinvoice()
+    public function create_invoice()
     {
-
         $object['controller'] = $this;
         $object['active_tab'] = "Invoice";
         $object['title'] = "Invoice";
@@ -94,14 +81,13 @@ class Dashboard extends CI_Controller
         $trans_id = $this->input->get("id");
 
         $data["customer_details"] = $this->mmodel->get_all_by_id("invoice_header", $trans_id);
-        $data["invoice_details"] = $this->mmodel->get_invoice_details('invoice_lines', $trans_id);
+        $data["invoice_details"] = $this->mmodel->get_invoice_details($trans_id);
 
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
         $this->load->view('usercash_invoice', $data);
         $this->load->view('footer');
-
     }
 
     public function invoicelist()
@@ -221,13 +207,14 @@ class Dashboard extends CI_Controller
 
         $data['status'] = 0;
 
-        if($this->mmodel->save_transaction($header,$line_records)){
+        $trans_id = $this->mmodel->save_transaction($header, $line_records);
+
+        if($trans_id){
             $data['status'] = 1;
+            $data['trans_id'] = $trans_id;
         }
 
         echo json_encode($data);
-
-
     }
 
 
