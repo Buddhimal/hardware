@@ -25,60 +25,63 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                    <form action="<?php echo base_url()?>inventory" method="get" class="form-horizontal">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <!-- text input -->
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-4 col-form-label">From Date</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="from" placeholder="" name="from">
+                        <form action="<?php echo base_url() ?>inventory" method="get" class="form-horizontal">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <!-- text input -->
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">From Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="from" placeholder=""
+                                                   name="from">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-4 col-form-label">To Date</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="to" placeholder="" name="to">
+                                <div class="col-sm-3">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">To Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="to" placeholder="" name="to">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Search by</label>
-                                    <div class="col-sm-8">
-                                        <select id="search_by" class="form-control" name="search_by">
-                                            <option>item</option>
-                                            <option>price</option>
-                                        </select>
+                                <div class="col-sm-3">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Search by</label>
+                                        <div class="col-sm-8">
+                                            <select id="search_by" class="form-control" name="search_by">
+                                                <option>item</option>
+                                                <option>price</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group row">
-                                    <div class="col-sm-8">
-                                        <select id="param" class="form-control cbItem" style="display:inline;" name="param">
-                                            <?php
-                                            foreach ($items->result() as $row) {
+                                <div class="col-sm-3">
+                                    <div class="form-group row">
+                                        <div class="col-sm-8">
+                                            <select id="param" class="form-control cbItem" style="display:inline;"
+                                                    name="param">
+                                                <?php
+                                                foreach ($items->result() as $row) {
+                                                    ?>
+                                                    <tr>
+                                                        <option><?php echo $row->item_code; ?></option>
+                                                    </tr>
+                                                <?php }
                                                 ?>
-                                                <tr>
-                                                <option><?php echo $row->item_code; ?></option>
-                                                </tr>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                        <input type="text" class="form-control txtPrice" id="param1" placeholder="Price"
-                                            style="display:none;" name="param"/>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <input type="submit" class="form-control btn-secondary" placeholder="Email"
-                                            value="Search"/>
+                                            </select>
+                                            <input type="text" class="form-control txtPrice" id="param1"
+                                                   placeholder="Price"
+                                                   style="display:none;" name="param"/>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="submit" class="form-control btn-secondary" placeholder="Email"
+                                                   value="Search"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </form>    
+                        </form>
                         <div class="card">
 
                             <!-- /.card-header -->
@@ -97,21 +100,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php  
-                                        foreach ($inventory->result() as $row)  
-                                        {  
-                                            ?><tr>  
-                                            <td><?php echo $row->item_code;?></td>  
-                                            <td><?php echo $row->item_name;?></td>  
-                                            <td><?php echo $row->sku_code;?></td>  
-                                            <td><?php echo $row->date_purchased;?></td>  
-                                            <td><?php echo $row->qty;?></td>  
-                                            <td><?php echo $row->purchased_price;?></td>  
-                                            <td><?php echo $row->sku_name;?></td>  
-                                            <td><?php echo $row->selling_price ;?></td>  
-                                            </tr>  
-                                        <?php }  
-                                        ?>  
+                                    <?php
+                                    foreach ($inventory->result() as $row) {
+                                        ?>
+                                        <tr>
+                                        <td><?php echo $row->item_code; ?></td>
+                                        <td><?php echo $row->item_name; ?></td>
+                                        <td><?php echo $row->sku_code; ?></td>
+                                        <td><?php echo $row->date_purchased; ?></td>
+                                        <td><?php echo $row->qty; ?></td>
+                                        <td><?php echo $row->purchased_price; ?></td>
+                                        <td><?php echo $row->sku_name; ?></td>
+                                        <td><?php echo $row->selling_price; ?></td>
+                                        </tr>
+                                    <?php }
+                                    ?>
                                     </tbody>
                                     <tfoot>
                                     <tr>

@@ -64,7 +64,7 @@ class Dashboard extends CI_Controller
         $data['items'] = $this->mmodel->get_item_list();
         $data['inventory'] = $this->mmodel->get_inventory($param_data);
 
-        $this->load->view('inventory',$data);
+        $this->load->view('inventory', $data);
         $this->load->view('footer');
         $this->load->view('js/inventoryjs');
     }
@@ -151,7 +151,12 @@ class Dashboard extends CI_Controller
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $this->load->view('salestransaction');
+
+        $data["inv_number"]=$this->mmodel->generate_invoice_number();
+        $data["items"]=$this->mmodel->get_item_list();
+        $data["inv_date"]=date('Y-m-d');
+
+        $this->load->view('salestransaction',$data);
         $this->load->view('footer');
         $this->load->view('js/salestransactionsjs');
     }
@@ -182,6 +187,58 @@ class Dashboard extends CI_Controller
         } else {
             $this->add_sku('SKU failed to Insert', 'alert-danger');
         }
+    }
+
+    public function save_transaction()
+    {
+        $header['invoice_number'] = $this->input->post('invoice_number');
+        $header['invoice_date'] = $this->input->post('inv_date');
+        $header['customer_name'] = $this->input->post('cus_name');
+        $header['address'] = $this->input->post('cus_address');
+        $header['telephone'] = $this->input->post('cus_tel');
+        $header['gross_total'] = $this->input->post('gross_total');
+        $header['qty_total'] = $this->input->post('total_qty');
+        $header['tax'] = $this->input->post('tax_amt');
+        $header['discount'] = $this->input->post('total_discount');
+        $header['net_total'] = $this->input->post('net_total');
+        $header['net_total'] = $this->input->post('net_total');
+        $header['net_total'] = $this->input->post('net_total');
+        $header['last_modified_at'] = date('Y-m-d H:i:s');
+        $header['last_modified_by'] = $this->session->userdata('name');
+
+        $item_list = json_decode($this->input->post('item_list'));
+
+        $line_records = [];
+
+        foreach ($item_list as $item) {
+            $line['item_code'] = $item[0];
+            $line['unit_price'] = $item[1];
+            $line['discount'] = $item[2];
+            $line['qty'] = $item[3];
+            $line['total_price'] = $item[4];
+            $line_records[] = $line;
+        }
+
+        $data['status'] = 0;
+
+        if($this->mmodel->save_transaction($header,$line_records)){
+            $data['status'] = 1;
+        }
+
+        echo json_encode($data);
+
+
+    }
+
+
+    public function get_item_details()
+    {
+        $item_code = $this->input->get('item_code');
+
+        $item_details = $this->mmodel->get_item_details_for_transaction($item_code);
+
+        echo json_encode($item_details->row());
+
     }
 
 }

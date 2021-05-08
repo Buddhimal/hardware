@@ -39,6 +39,16 @@ class MModel extends CI_Model
         return $result;
     }
 
+    public function get_all_where($table, $where){
+        $result = $this->db
+            ->select("*")
+            ->from($table)
+            ->where($where)
+            ->get();
+
+        return $result;
+    }
+
     public function get_invoice_details($table, $id){
         $result = $this->db
             ->select("*")
@@ -104,10 +114,70 @@ class MModel extends CI_Model
 
         $result = $this->db->query($query);
 
-//        var_dump($result->result());
-//        die();
-
         return $result;
+    }
+
+    public function get_item_details_for_transaction($item_code){
+
+        return $this->db->query("
+                    SELECT
+                        im.item_code, 
+                        im.item_name, 
+                        im.unit_type, 
+                        sku.sku_code, 
+                        sku.sku_name, 
+                        i.selling_price
+                    FROM
+                        item_master AS im
+                        INNER JOIN
+                        item_sku AS sku
+                        ON 
+                            im.item_sku_id = sku.id
+                        INNER JOIN
+                        inventory AS i
+                        ON 
+                            im.id = i.item_id AND
+                            sku.id = i.item_sku_id
+                    WHERE im.item_code='$item_code'
+        ");
+
+    }
+
+    public function generate_invoice_number()
+    {
+        $this->db->select("id");
+        $this->db->from("invoice_header");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $invoice_number = "INV0000" . $rowcount;
+        else if ($rowcount < 100) $invoice_number = "INV000" . $rowcount;
+        else if ($rowcount < 1000) $invoice_number = "INV00" . $rowcount;
+        else if ($rowcount < 10000) $invoice_number = "INV0" . $rowcount;
+        else $invoice_number = "INV" . $invoice_number;
+
+
+        return $invoice_number;
+    }
+
+    public function save_transaction($header,$line_records){
+
+        if($this->db->insert('invoice_header', $header)){
+            $invoice_id = $this->db->insert_id();
+
+            foreach ($line_records as $lines){
+                $lines['invoice_id']= $invoice_id;
+                $this->db->insert('invoice_lines', $lines);
+            }
+            return true;
+        }
+        return false;
     }
 
 

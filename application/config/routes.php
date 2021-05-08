@@ -55,7 +55,12 @@ $route['load_invoice_list'] = 'dashboard/invoicelist';
 $route['load_invoiceModal_list'] = 'dashboard/myModal';
 $route['load_itemsaleshistory'] = 'dashboard/itemsaleshistory';
 $route['load_salestransaction'] = 'dashboard/salestransaction';
+$route['save_transaction'] = 'dashboard/save_transaction';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['load_inventory'] = 'dashboard/invoice';
 $route['sales_history'] = 'dashboard/SalesHistory';
+
+
+//ajax routes
+$route['get_item_details'] = 'dashboard/get_item_details';
