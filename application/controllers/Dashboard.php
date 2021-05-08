@@ -60,7 +60,8 @@ class Dashboard extends CI_Controller
     public function add_sku($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
-        $object['active_tab'] = "Inventory";
+        $object['active_tab'] = "add_sku";
+        $object['active_main_tab'] = "add_sku";
         $object['title'] = "Inventory";
         $this->load->view('header', $object);
         $this->load->view('top_header');
@@ -89,6 +90,21 @@ class Dashboard extends CI_Controller
                 $this->add_sku('SKU failed to Insert', 'alert-danger');
             }
         }
+    }
+
+    public function view_sku(){
+        $object['controller'] = $this;
+        $object['active_tab'] = "view_sku";
+        $object['title'] = "Inventory";
+
+        $search_param = $this->input->get_post('search_param');
+
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+        $data['sku_list'] = $this->mmodel->get_sku_list($search_param);
+        $this->load->view('view_SKU', $data);
+        $this->load->view('footer');
     }
 
     public function create_invoice()

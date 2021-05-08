@@ -74,19 +74,25 @@ if(!isset($active_main_tab))
 					</ul>
 				</li>
 
-				<li class="nav-item has-treeview <?php if($active_main_tab=='Administration') echo "menu-open" ?> ">
-					<a href="#" class="nav-link <?php if($active_main_tab=='Administration') echo "active" ?>">
+				<li class="nav-item has-treeview <?php if($active_main_tab=='add_sku' || $active_tab=='view_sku') echo "menu-open" ?> ">
+					<a href="#" class="nav-link <?php if($active_main_tab=='add_sku' || $active_tab=='view_sku') echo "active" ?>">
 						<i class="nav-icon fas fa-cogs"></i>
 						<p>
 							SKU
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview ">
+					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo base_url()?>add_sku" class="nav-link <?php if($active_tab=='CreateSKU') echo "active" ?>">
+							<a href="<?php echo base_url()?>add_sku" class="nav-link <?php if($active_tab=='add_sku') echo "active" ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Create SKU</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>view_sku" class="nav-link <?php if($active_tab=='view_sku') echo "active" ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>View SKU</p>
 							</a>
 						</li>
 

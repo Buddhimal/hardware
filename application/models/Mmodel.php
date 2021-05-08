@@ -16,7 +16,6 @@ class MModel extends CI_Model
 
     public function insert($table, $data)
     {
-
         $this->db->insert($table, $data);
         return ($this->db->affected_rows() >= 0);
     }
@@ -222,6 +221,12 @@ class MModel extends CI_Model
             return $invoice_id;
         }
         return false;
+    }
+
+    public function get_sku_list($param){
+
+        return $this->db->query("select * from item_sku where sku_code like '%$param%' OR sku_name like '%$param%'");
+
     }
 
 
