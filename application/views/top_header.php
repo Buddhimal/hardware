@@ -1,4 +1,23 @@
+
+<style type="text/css">
+    .loader {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: url("<?php echo base_url()?>dist/img/loading-spinner.gif") no-repeat center center;
+        z-index: 10000;
+    }
+
+</style>
+
+
 <body class="sidebar-mini layout-fixed">
+<div id="loader"></div>
+
 <!-- Site wrapper -->
 <div class="wrapper">
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light ">
