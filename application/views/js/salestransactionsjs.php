@@ -22,6 +22,8 @@
     // var discountPct = 0;
     // var totalAfterDiscount = 0;
 
+    let rowCount = 0;
+
     function removeRecord(itemCode) {
 
         let parentId = 'item'+itemCode;
@@ -130,6 +132,8 @@
                     var discountPct = 0;
                     var totalAfterDiscount = 0;
 
+                    ++rowCount;
+
                     if (this.$item_qty.val() > 0) {
                         total = data.selling_price * this.$item_qty.val();
                     } else {
@@ -149,7 +153,7 @@
                     this.$qtyTotal += Number(qty);
 
                     this.$table.append(
-                        `<tr class='data_row' id='item` + data.item_code + `' >` +
+                        `<tr class='data_row' id='item` + rowCount + `' >` +
                         `<td class='item_code'>` + data.item_code + `</td>` +
                         `<td>` + data.item_name + `</td>` +
                         `<td>` + data.sku_name + `</td>` +
@@ -158,7 +162,7 @@
                         `<td class='qty'>` + qty + `</td>` +
                         `<td class='discount_pct'>` + discountPct + `</td>` +
                         `<td class='total_value'>` + totalAfterDiscount + `</td>` +
-                        `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` + data.item_code + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` + `</td>` +
+                        `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` + rowCount + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` + `</td>` +
                         +`<tr>`
                     )
 
