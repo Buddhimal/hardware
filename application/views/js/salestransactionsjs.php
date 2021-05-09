@@ -15,12 +15,42 @@
         },
     };
 
-    (function ($) {
+    var myTableArray = [];
+    // var total = 0;
+    // var qty = 1;
+    // var discount = 0;
+    // var discountPct = 0;
+    // var totalAfterDiscount = 0;
+
+    let rowCount = 0;
+
+    function removeRecord(itemCode) {
+
+        let parentId = 'item'+itemCode;
+
+        let totalQty = $("#total_qty");
+        let grossTotal = $("#gross_total");
+        let item_discount = $("#item_discount");
+        let discountTotal = $("#total_discount");
+        let qtyTotal = $("#total_qty");
+
+
+        totalQty.val(totalQty.val() - $('#'+parentId+'> .qty').html());
+        grossTotal.val(grossTotal.val() - ( $('#'+parentId+'> .selling_price').html() * $('#'+parentId+'> .qty').html()));
+        $('#net_total').val(grossTotal.val() - $('#total_discount').val());
+
+        $('#item' + itemCode).remove();
+
+    }
+
+
+    (function($) {
         "use strict";
-        $(function () {
+        $(function() {
 
             const salesTransObj = {
                 $btnAdd: $("#btn_add"),
+                $btnRemove: $("#btn_add"),
                 $btnSaveTans: $("#btn_save_tans"),
                 $txt_gross_total: $("#gross_total"),
                 $txt_total_qty: $("#total_qty"),
@@ -77,6 +107,7 @@
                             })
                         }
                     });
+
                 },
                 addNewTranRecord: function () {
                     this.getItemDetails();
@@ -101,6 +132,8 @@
                     var discountPct = 0;
                     var totalAfterDiscount = 0;
 
+                    ++rowCount;
+
                     if (this.$item_qty.val() > 0) {
                         total = data.selling_price * this.$item_qty.val();
                     } else {
@@ -120,28 +153,30 @@
                     this.$qtyTotal += Number(qty);
 
                     this.$table.append(
-                        "<tr class='data_row'>" +
-                        "<td class='item_code'>" + data.item_code + "</td>" +
-                        "<td>" + data.item_name + "</td>" +
-                        "<td>" + data.sku_name + "</td>" +
-                        "<td class='selling_price'>" + data.selling_price + "</td>" +
-                        "<td>" + data.unit_type + "</td>" +
-                        "<td class='qty'>" + qty + "</td>" +
-                        "<td class='discount_pct'>" + discountPct + "</td>" +
-                        "<td class='total_value'>" + totalAfterDiscount + "</td>" +
-                        "<td><img src='../dist/img/trash16x16.png'/></td>" +
-                        +"<tr>"
+                        `<tr class='data_row' id='item` + rowCount + `' >` +
+                        `<td class='item_code'>` + data.item_code + `</td>` +
+                        `<td>` + data.item_name + `</td>` +
+                        `<td>` + data.sku_name + `</td>` +
+                        `<td class='selling_price'>` + data.selling_price + `</td>` +
+                        `<td>` + data.unit_type + `</td>` +
+                        `<td class='qty'>` + qty + `</td>` +
+                        `<td class='discount_pct'>` + discountPct + `</td>` +
+                        `<td class='total_value'>` + totalAfterDiscount + `</td>` +
+                        `<td> <button type='button' class = 'btn btn-danger'  onClick='removeRecord("` + rowCount + `")'> <i class='fa fa-trash' aria-hidden='true'></i> </button>` + `</td>` +
+                        +`<tr>`
                     )
 
-                    this.$txt_gross_total.val(this.$grossTotal);
-                    this.$txt_total_qty.val(this.$qtyTotal);
-                    this.$txt_total_discount.val(this.$discountTotal);
-                    this.$txt_net_total.val(this.$grossTotal - this.$discountTotal);
+                    // this.$txt_gross_total.val(this.$grossTotal);
+                    this.$txt_gross_total.val( Number(this.$txt_gross_total.val()) + Number(total));
+                    this.$txt_total_qty.val( Number(this.$txt_total_qty.val()) + Number(qty));
+                    // this.$txt_total_qty.val(this.$qtyTotal);
+                    // this.$txt_total_discount.val(this.$discountTotal);
+                    this.$txt_total_discount.val(Number(this.$txt_total_discount.val()) + Number(discount));
+                    this.$txt_net_total.val(Number(this.$txt_gross_total.val()) - Number(this.$txt_total_discount.val()));
 
                     loadingWidget.hide();
                 },
-                saveTranRecords: function () {
-                    var myTableArray = [];
+                saveTranRecords: function() {
 
                     $('#example1 tbody tr').each(function() {
                         var arrayOfThisRow = [];
