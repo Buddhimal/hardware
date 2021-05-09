@@ -49,7 +49,7 @@ $(document).ready(function(){
       "responsive": true, "lengthChange": false, "autoWidth": false,"paging": true,
       "searching": false,
       "ordering": false,
-      "ajax": '<?php echo base_url()?>dummydata/saleshistorydata.json'
+      //"ajax": '<?php echo base_url()?>dummydata/saleshistorydata.json'
       //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });

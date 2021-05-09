@@ -41,9 +41,10 @@ class MModel extends CI_Model
         return $result;
     }
 
-    public function get_where_count($table,$where){
+    public function get_where_count($table, $where)
+    {
 
-        $res=$this->db
+        $res = $this->db
             ->select('*')
             ->from($table)
             ->where($where)
@@ -180,7 +181,6 @@ class MModel extends CI_Model
                             sku.id = i.item_sku_id
                     WHERE im.item_code='$item_code'
         ");
-
     }
 
     public function generate_invoice_number()
@@ -223,11 +223,71 @@ class MModel extends CI_Model
         return false;
     }
 
-    public function get_sku_list($param){
+    public function get_sku_list($param)
+    {
 
         return $this->db->query("select * from item_sku where sku_code like '%$param%' OR sku_name like '%$param%'");
-
     }
 
+    public function get_salesHistory_table($param_data)
+    {
 
+        $from = $param_data["from"];
+        $to = $param_data["to"];
+        //$type = $param_data["search_by"];
+        // $type = $param_data["item_code"];
+        $param = $param_data["item_code"];
+
+        $query = "SELECT
+        item_master.item_code, 
+        item_master.item_name, 
+        item_sku.sku_name, 
+        invoice_header.customer_name, 
+        invoice_header.invoice_date, 
+        invoice_lines.unit_price, 
+        invoice_lines.qty, 
+        item_master.unit_type, 
+        invoice_lines.total_price, 
+        invoice_lines.discount
+    FROM
+        invoice_header
+        INNER JOIN
+        invoice_lines
+        ON 
+            invoice_header.id = invoice_lines.invoice_id
+        INNER JOIN
+        item_master
+        ON 
+            invoice_lines.item_code = item_master.item_code
+        INNER JOIN
+        item_sku
+        ON 
+            item_master.item_sku_id = item_sku.id AND
+            item_master.item_sku_id = item_sku.id";
+
+        if (isset($param_data['from']) && $from != '')
+            $query .= " AND invoice_header.invoice_date >= '$from'";
+        if (isset($param_data['to']) && $to != '')
+            $query .= " AND invoice_header.invoice_date <= '$to'";
+        if (isset($param_data["item_code"]))
+            $query .= " AND item_master.item_code = '$param' ";
+
+            // die($query);
+        
+
+        $result = $this->db->query($query);
+        // var_dump($result->result());
+        return $result;
+    }
+    public function get_item_codes()
+    {
+        $query = "SELECT
+        item_master.item_code
+    FROM
+        item_master";
+
+        $result = $this->db->query($query);
+        // var_dump($result->result());
+        return $result;
+    }
 }
