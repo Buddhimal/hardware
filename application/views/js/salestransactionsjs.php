@@ -16,11 +16,11 @@
     };
 
     var myTableArray = [];
-    var total = 0;
-    var qty = 1;
-    var discount = 0;
-    var discountPct = 0;
-    var totalAfterDiscount = 0;
+    // var total = 0;
+    // var qty = 1;
+    // var discount = 0;
+    // var discountPct = 0;
+    // var totalAfterDiscount = 0;
 
     function removeRecord(itemCode) {
 
@@ -124,11 +124,11 @@
                     });
                 },
                 addNewRecord: function (data) {
-                    // var total = 0;
-                    // var qty = 1;
-                    // var discount = 0;
-                    // var discountPct = 0;
-                    // var totalAfterDiscount = 0;
+                    var total = 0;
+                    var qty = 1;
+                    var discount = 0;
+                    var discountPct = 0;
+                    var totalAfterDiscount = 0;
 
                     if (this.$item_qty.val() > 0) {
                         total = data.selling_price * this.$item_qty.val();
@@ -162,10 +162,13 @@
                         +`<tr>`
                     )
 
-                    this.$txt_gross_total.val(this.$grossTotal);
-                    this.$txt_total_qty.val(this.$qtyTotal);
-                    this.$txt_total_discount.val(this.$discountTotal);
-                    this.$txt_net_total.val(this.$grossTotal - this.$discountTotal);
+                    // this.$txt_gross_total.val(this.$grossTotal);
+                    this.$txt_gross_total.val( Number(this.$txt_gross_total.val()) + Number(total));
+                    this.$txt_total_qty.val( Number(this.$txt_total_qty.val()) + Number(qty));
+                    // this.$txt_total_qty.val(this.$qtyTotal);
+                    // this.$txt_total_discount.val(this.$discountTotal);
+                    this.$txt_total_discount.val(Number(this.$txt_total_discount.val()) + Number(discount));
+                    this.$txt_net_total.val(Number(this.$txt_gross_total.val()) - Number(this.$txt_total_discount.val()));
 
                     loadingWidget.hide();
                 },
