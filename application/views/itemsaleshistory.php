@@ -41,8 +41,8 @@
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div> -->
-                                    <input type="date" name="from" class="form-control float-right">
-                                    <input type="date" name="to" class="form-control float-right">
+                                    <input type="date" name="from" class="form-control float-right" value="<?php echo isset($_GET['from']) ? $_GET['from'] : "" ?>">
+                                    <input type="date" name="to" class="form-control float-right" value="<?php echo isset($_GET['to']) ? $_GET['to'] : "" ?>">
                                 </div>
 
                             </div>
@@ -59,7 +59,7 @@
                                 <select id="searchById" class="form-control select2bs4" name="item_code">
                                     <option disabled="disabled" selected="selected">Select an item code</option>
                                     <?php foreach ($item_codes->result() as $item) { ?>
-                                        <option value="<?php echo $item->item_code ?>"> <?php echo $item->item_code ?> </option>
+                                        <option value="<?php echo $item->item_code ?>" <?php if(isset($_GET['item_code']) && $_GET['item_code']==$item->item_code) echo "selected"?>> <?php echo $item->item_code ?> </option>
                                     <?php } ?>
                                 </select>
                             </div>
