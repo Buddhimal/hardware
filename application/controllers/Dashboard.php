@@ -159,7 +159,15 @@ class Dashboard extends CI_Controller
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $this->load->view('itemsaleshistory');
+
+        $param_data["from"] =  $this->input->get('from');
+        $param_data["to"] = $this->input->get('to');
+        $param_data["item_code"] =  $this->input->get('item_code') ;
+        $param_data["param"] = $this->input->get('param');
+        
+        $data["sales_history_table"]=$this->mmodel->get_salesHistory_table($param_data);
+        $data["item_codes"]=$this->mmodel->get_item_codes();
+        $this->load->view('itemsaleshistory', $data);
         $this->load->view('footer');
         $this->load->view('js/itemsaleshistoryjs');
     }
