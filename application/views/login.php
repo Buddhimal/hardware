@@ -1,7 +1,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
 	<div class="login-logo">
-		<a href="../../index2.html"><b>Admin</b>LTE</a>
+		<a href="../../index2.html"><b>Kethmi</b>HOLDINGS</a>
 	</div>
 	<!-- /.login-logo -->
 	<div class="card">
@@ -32,9 +32,9 @@
 					<div class="col-8">
 						<div class="icheck-primary">
 							<input type="checkbox" id="remember">
-							<label for="remember">
-								Remember Me
-							</label>
+<!--							<label for="remember">-->
+<!--								Remember Me-->
+<!--							</label>-->
 						</div>
 					</div>
 					<!-- /.col -->

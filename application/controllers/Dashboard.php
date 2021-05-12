@@ -44,6 +44,7 @@ class Dashboard extends CI_Controller
 
         $object['controller'] = $this;
         $object['active_tab'] = "Inventory";
+        $object['active_main_tab'] = "Inventory";
         $object['title'] = "Inventory";
         $this->load->view('header', $object);
         $this->load->view('top_header');
@@ -57,6 +58,21 @@ class Dashboard extends CI_Controller
         $this->load->view('js/inventoryjs');
     }
 
+    public function add_items_inventory()
+    {
+
+        $object['controller'] = $this;
+        $object['active_tab'] = "item_update";
+        $object['title'] = "ItemUpdate";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+
+        $this->load->view('updateinventory');
+        $this->load->view('footer');
+        $this->load->view('js/updateinventoryjs');
+    }
+    
     public function add_sku($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
