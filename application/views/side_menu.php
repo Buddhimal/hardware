@@ -13,7 +13,7 @@ if (!isset($active_main_tab))
         <img src="<?php echo base_url() ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Sirikatha Loan</span>
+        <span class="brand-text font-weight-light">Kethmi Holdings</span>
     </a>
 
     <!-- Sidebar -->
