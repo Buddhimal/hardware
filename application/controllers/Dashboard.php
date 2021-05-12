@@ -58,9 +58,8 @@ class Dashboard extends CI_Controller
         $this->load->view('js/inventoryjs');
     }
 
-    public function add_items_inventory()
+    public function add_items_inventory($msg = "", $alert_type = "alert-success")
     {
-
         $object['controller'] = $this;
         $object['active_tab'] = "item_update";
         $object['title'] = "ItemUpdate";
@@ -68,11 +67,38 @@ class Dashboard extends CI_Controller
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $this->load->view('updateinventory');
+        $data["skus"] = $this->mmodel->get_all('item_sku');
+        $data["items"] = $this->mmodel->get_all('item_master');
+        $data["msg"] = $msg;
+        $data["alert_type"] = $alert_type;
+
+        $this->load->view('updateinventory', $data);
         $this->load->view('footer');
         $this->load->view('js/updateinventoryjs');
     }
-    
+
+    public function save_item_inventory()
+    {
+        $data['item_id'] = $this->input->get_post('item_code');
+        $data['item_sku_id'] = $this->input->get_post('sku_code');
+        $data['qty'] = $this->input->get_post('qty');
+        $data['purchased_price'] = $this->input->get_post('price');
+        $data['profit_type'] = $this->input->get_post('profit_type');
+        $data['profit_margin'] = $this->input->get_post('profit_margin');
+        $data['selling_price'] = $this->input->get_post('selling_price');
+        $data['date_purchased'] = $this->input->get_post('date');
+        $data['last_modified_at'] = date('Y-m-d H:i:s');
+        $data['last_modified_by'] = $this->session->userdata('name');
+
+        $res = $this->mmodel->insert('inventory', $data);
+        if ($res) {
+            $this->add_items_inventory('Items Added Successfully');
+        } else {
+            $this->add_items_inventory('Items failed to Insert', 'alert-danger');
+        }
+
+    }
+
     public function add_sku($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
@@ -108,7 +134,8 @@ class Dashboard extends CI_Controller
         }
     }
 
-    public function view_sku(){
+    public function view_sku()
+    {
         $object['controller'] = $this;
         $object['active_tab'] = "view_sku";
         $object['title'] = "Inventory";
@@ -176,13 +203,13 @@ class Dashboard extends CI_Controller
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $param_data["from"] =  $this->input->get('from');
+        $param_data["from"] = $this->input->get('from');
         $param_data["to"] = $this->input->get('to');
-        $param_data["item_code"] =  $this->input->get('item_code') ;
+        $param_data["item_code"] = $this->input->get('item_code');
         $param_data["param"] = $this->input->get('param');
-        
-        $data["sales_history_table"]=$this->mmodel->get_salesHistory_table($param_data);
-        $data["item_codes"]=$this->mmodel->get_item_codes();
+
+        $data["sales_history_table"] = $this->mmodel->get_salesHistory_table($param_data);
+        $data["item_codes"] = $this->mmodel->get_item_codes();
         $this->load->view('itemsaleshistory', $data);
         $this->load->view('footer');
         $this->load->view('js/itemsaleshistoryjs');
