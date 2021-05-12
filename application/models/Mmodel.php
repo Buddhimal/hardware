@@ -208,6 +208,30 @@ class MModel extends CI_Model
         return $invoice_number;
     }
 
+    public function generate_item_number()
+    {
+        $invoice_number = "";
+
+        $this->db->select("id");
+        $this->db->from("item_master");
+        $this->db->limit(1);
+        $this->db->order_by('id', "DESC");
+        $result = $this->db->get();
+        if ($result->num_rows() == 0)
+            $rowcount = 0;
+        else {
+            $rowcount = $result->row()->id;
+        }
+        $rowcount++;
+        if ($rowcount < 10) $invoice_number = "ITM0000" . $rowcount;
+        else if ($rowcount < 100) $invoice_number = "ITM000" . $rowcount;
+        else if ($rowcount < 1000) $invoice_number = "ITM00" . $rowcount;
+        else if ($rowcount < 10000) $invoice_number = "ITM0" . $rowcount;
+        else $invoice_number = "ITM" . $invoice_number;
+
+        return $invoice_number;
+    }
+
     public function save_transaction($header, $line_records)
     {
 

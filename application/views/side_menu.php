@@ -149,7 +149,7 @@ if (!isset($active_main_tab))
 <!--                    </a>-->
 <!--                </li>-->
                 <li class="nav-item has-treeview ">
-                    <a href="<?php echo base_url() ?>dashboard/item_create"
+                    <a href="<?php echo base_url() ?>item_create"
                        class="nav-link <?php if ($active_tab == 'item_create') echo "active" ?>">
                         <i class="nav-icon fa fa-hourglass-start"></i>
                         <p>
@@ -158,7 +158,7 @@ if (!isset($active_main_tab))
                     </a>
                 </li>
                 <li class="nav-item has-treeview ">
-                    <a href="<?php echo base_url() ?>dashboard/itemsaleshistory"
+                    <a href="<?php echo base_url() ?>itemsaleshistory"
                        class="nav-link <?php if ($active_tab == 'Itemsaleshistory') echo "active" ?>">
                         <i class="nav-icon fa fa-hourglass-start"></i>
                         <p>
