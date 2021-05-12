@@ -108,6 +108,14 @@ if(!isset($active_main_tab))
 					</a>
 				</li>
 				<li class="nav-item has-treeview ">
+					<a href="<?php echo base_url()?>dashboard/itemupdate" class="nav-link <?php if($active_tab=='item_update') echo "active" ?>">
+						<i class="nav-icon fas fa-list-alt"></i>
+						<p>
+							Item Update
+						</p>
+					</a>
+				</li>
+				<li class="nav-item has-treeview ">
 					<a href="<?php echo base_url()?>dashboard/invoicelist" class="nav-link <?php if($active_tab=='InvoiceList') echo "active" ?>">
 						<i class="nav-icon fa fa-sticky-note"></i>
 						<p>
