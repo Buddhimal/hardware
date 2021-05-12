@@ -167,7 +167,7 @@ class Dashboard extends CI_Controller
         $this->load->view('usercash_invoice', $data);
         $this->load->view('footer');
     }
-    public function item_create()
+    public function item_create($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;
         $object['active_tab'] = "item_create";
@@ -175,9 +175,35 @@ class Dashboard extends CI_Controller
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $this->load->view('item_create');
+
+        $data["skus"] = $this->mmodel->get_all('item_sku');
+        $data["unit_types"] = $this->mmodel->get_all('unit_types');
+        $data["suppliers"] = $this->mmodel->get_all('suppliers');
+        $data["msg"] = $msg;
+        $data["alert_type"] = $alert_type;
+
+        $this->load->view('item_create',$data);
         $this->load->view('footer');
         $this->load->view('js/item_createjs');
+    }
+
+    public function save_item($msg = "", $alert_type = "alert-success"){
+
+        $data['item_name'] = $this->input->get_post('name');
+        $data['item_sku_id'] = $this->input->get_post('sku');
+        $data['supplier_id'] = $this->input->get_post('supplier');
+        $data['unit_type'] = $this->input->get_post('unit_type');
+        $data['re_order_level'] = $this->input->get_post('re_order_level');
+        $data['status'] = $this->input->get_post('status');
+        $data['item_code'] = $this->mmodel->generate_item_number();
+        $data['last_modified_at'] = date('Y-m-d H:i:s');
+        $data['last_modified_by'] = $this->session->userdata('name');
+
+        if ($this->mmodel->insert('item_master', $data)) {
+            $this->item_create('Item Added Successfully');
+        } else {
+            $this->item_create('Item failed to Insert', 'alert-danger');
+        }
     }
 
     public function invoicelist()
