@@ -44,6 +44,7 @@ class Dashboard extends CI_Controller
 
         $object['controller'] = $this;
         $object['active_tab'] = "Inventory";
+        $object['active_main_tab'] = "Inventory";
         $object['title'] = "Inventory";
         $this->load->view('header', $object);
         $this->load->view('top_header');
@@ -57,7 +58,7 @@ class Dashboard extends CI_Controller
         $this->load->view('js/inventoryjs');
     }
 
-    public function itemupdate()
+    public function add_items_inventory()
     {
 
         $object['controller'] = $this;

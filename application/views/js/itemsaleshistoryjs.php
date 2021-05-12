@@ -1,8 +1,3 @@
-<style>
-#block1,#block2,#block3{
-	margin-top: 5px;
-}
-</style>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
@@ -49,8 +44,6 @@ $(document).ready(function(){
       "responsive": true, "lengthChange": false, "autoWidth": false,"paging": true,
       "searching": false,
       "ordering": false,
-      //"ajax": '<?php echo base_url()?>dummydata/saleshistorydata.json'
-      //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
 function openInvoiceModal(e){
@@ -59,22 +52,6 @@ function openInvoiceModal(e){
     });
 }
 function closeModal(){debugger;
-    // $("#example1").empty();  
-    // // $("#example1").DataTable({
-    // //   "ajax": '<?php echo base_url()?>dummydata/invoicedata.json'
-    // //   //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    // // })  
-    // $("#example1").DataTable({
-    //   "responsive": true, "lengthChange": false, "autoWidth": false,"paging": true,
-    //   "searching": false,
-    //   "ordering": false,
-    //   "ajax": '<?php echo base_url()?>dummydata/invoicedata.json'
-    //   //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    // $("#example1").DataTable({
-    //   "ajax": '<?php echo base_url()?>dummydata/invoicedata.json'
-    //   //,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    // });  
     $('#example1').DataTable().ajax.reload();
 }
 
@@ -105,13 +82,6 @@ function getParameterByName(name) {
             }
         });
     });
-
-//     $('#id_00001194').on('click',function(){
-//         debugger;
-//     $('.modal-body').load('./invoiceModal?inv=11111094',function(){
-//         $('#modal-lg').modal({show:true});
-//     });
-// });
 
     $('#example1_info').css('display','none');
   });
