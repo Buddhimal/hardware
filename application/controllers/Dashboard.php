@@ -69,7 +69,11 @@ class Dashboard extends CI_Controller
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $this->load->view('item_list');
+        $data['items'] = $this->mmodel->get_all('item_master');
+        $data['selected'] = $this->input->get('item_code');
+        $data['item_list'] = $this->mmodel->get_items($this->input->get('item_code'));
+
+        $this->load->view('item_list',$data);
         $this->load->view('footer');
         $this->load->view('js/item_listjs');
     }

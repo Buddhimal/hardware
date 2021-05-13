@@ -296,13 +296,14 @@ class MModel extends CI_Model
         if (isset($param_data["item_code"]))
             $query .= " AND item_master.item_code = '$param' ";
 
-            // die($query);
-        
+        // die($query);
+
 
         $result = $this->db->query($query);
         // var_dump($result->result());
         return $result;
     }
+
     public function get_item_codes()
     {
         $query = "SELECT
@@ -313,5 +314,32 @@ class MModel extends CI_Model
         $result = $this->db->query($query);
         // var_dump($result->result());
         return $result;
+    }
+
+    public function get_items($item_code=''){
+
+        return $this->db
+            ->query("SELECT
+                        i.item_code, 
+                        i.item_name, 
+                        i.unit_type, 
+                        i.re_order_level, 
+                        sku.sku_code, 
+                        sku.sku_name, 
+                        s.supplier_code, 
+                        s.supplier_name, 
+                        i.`status`
+                    FROM
+                        item_master AS i
+                        INNER JOIN
+                        item_sku AS sku
+                        ON 
+                            i.item_sku_id = sku.id
+                        INNER JOIN
+                        suppliers AS s
+                        ON 
+                            i.supplier_id = s.id
+                    WHERE i.item_code LIKE '%$item_code%'        
+                            ");
     }
 }
