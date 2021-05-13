@@ -57,7 +57,22 @@ class Dashboard extends CI_Controller
         $this->load->view('footer');
         $this->load->view('js/inventoryjs');
     }
+    
+    public function item_list()
+    {
+        $object['controller'] = $this;
+        $object['active_tab'] = "item_list";
+        $object['active_main_tab'] = "item_list";
+        $object['title'] = "item_list";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
 
+        $this->load->view('item_list');
+        $this->load->view('footer');
+        $this->load->view('js/item_listjs');
+    }
+    
     public function add_items_inventory($msg = "", $alert_type = "alert-success")
     {
         $object['controller'] = $this;

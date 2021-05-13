@@ -158,6 +158,15 @@ if (!isset($active_main_tab))
                     </a>
                 </li>
                 <li class="nav-item has-treeview ">
+                    <a href="<?php echo base_url() ?>item_list"
+                       class="nav-link <?php if ($active_tab == 'item_list') echo "active" ?>">
+                        <i class="nav-icon fa fa-hourglass-start"></i>
+                        <p>
+                            Item List
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>itemsaleshistory"
                        class="nav-link <?php if ($active_tab == 'Itemsaleshistory') echo "active" ?>">
                         <i class="nav-icon fa fa-hourglass-start"></i>
