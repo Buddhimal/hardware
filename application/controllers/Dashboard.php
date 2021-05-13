@@ -32,6 +32,7 @@ class Dashboard extends CI_Controller
         $this->load->view('side_menu');
         $this->load->view('dashboard');
         $this->load->view('footer');
+        $this->load->view('js/dashboardjs');
     }
 
     public function inventory()
