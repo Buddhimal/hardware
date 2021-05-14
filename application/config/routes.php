@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['inventory'] = 'dashboard/inventory';
 $route['item_create'] = 'dashboard/item_create';
 $route['item_list'] = 'dashboard/item_list';
+$route['salesreport'] = 'dashboard/salesreport';
 $route['itemupdate'] = 'dashboard/add_items_inventory';
 $route['load_invoice_list'] = 'dashboard/invoicelist';
 $route['load_invoiceModal_list'] = 'dashboard/myModal';
