@@ -64,5 +64,12 @@
       $("#to").val(to_date);
 
     $('#example1_info').css('display','none');
+
+      $('#search_by').val("<?php echo isset($_GET['search_by']) ?$_GET['search_by'] : "" ?>");
+      $('#search_by').trigger("change");
+
+    $('#param').val("<?php echo isset($_GET['param']) ?$_GET['param'] : "" ?>");
+    $('#param2').val("<?php echo isset($_GET['param2']) ?$_GET['param2'] : "" ?>");
+
   });
 </script>
