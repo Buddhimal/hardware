@@ -110,7 +110,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" id="item_qty"
+                                                <input type="number" class="form-control" id="item_qty"
                                                        placeholder="Qty (1)">
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" id="item_discount"
+                                                <input type="number" class="form-control" id="item_discount"
                                                        placeholder="Discount % (0)">
                                             </div>
                                         </div>
@@ -184,7 +184,7 @@
                                                        class="col-sm-4 col-form-label">Tax (%)</label>
                                                 <div class="col-sm-8">
                                                     <input type="number" class="form-control" id="tax_amt"
-                                                           placeholder="tax" value="0">
+                                                           placeholder="tax" value="0" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
