@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group row" style="justify-content:flex-end">
-                                            <a href="<?php echo base_url()?>add_sku" class="btn btn-dark"> Add Sku</a>
+                                            <a href="<?php echo base_url()?>add_sku" class="btn btn-dark"> Create Sku</a>
                                         </div>
                                     </div>
 
