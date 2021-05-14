@@ -131,6 +131,7 @@ class MModel extends CI_Model
                                     SELECT
                                         im.item_code,
                                         im.item_name,
+                                        im.unit_type,   
                                         sku.sku_code,
                                         sku.sku_name,
                                         inv.qty,
