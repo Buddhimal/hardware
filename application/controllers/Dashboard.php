@@ -30,9 +30,13 @@ class Dashboard extends CI_Controller
         $this->load->view('header', $object);
         $this->load->view('top_header');
         $this->load->view('side_menu');
-        $this->load->view('dashboard');
+        $main_data["sales_data"] = ($this->mmodel->get_data_for_dashboard());
+
+        $this->load->view('dashboard',$main_data);
         $this->load->view('footer');
-        $this->load->view('js/dashboardjs');
+        $data["item_sales"] = ($this->mmodel->get_items_for_chart());
+        $data["total_sales"] = ($this->mmodel->get_sales_history_for_chart());
+        $this->load->view('js/dashboardjs',$data);
     }
 
     public function inventory()

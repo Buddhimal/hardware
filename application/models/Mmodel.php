@@ -421,4 +421,81 @@ class MModel extends CI_Model
                 im.re_order_level"
         );
     }
+
+    public function get_items_for_chart(){
+
+        $item_names = [];
+        $item_sales = [];
+
+        $res = $this->db->query(
+                            "SELECT 
+                                im.item_code,
+                                im.item_name,
+                                SUM( il.qty ) AS qty 
+                            FROM
+                                item_master AS im
+                                INNER JOIN invoice_lines AS il ON im.item_code = il.item_code 
+                            GROUP BY
+                                im.item_code,
+                                im.item_name 
+                            ORDER BY
+                                SUM( il.qty ) DESC 
+                                LIMIT 7");
+
+        foreach ($res->result() as $items){
+            $item_names[] = $items->item_code;
+            $item_sales[] = $items->qty;
+        }
+
+        return array("names" => $item_names, "values" => $item_sales);
+
+    }
+
+    public function get_sales_history_for_chart(){
+
+       $res= $this->db->query("
+        SELECT
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 1 ) AS m1,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 2 ) AS m2,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 3 ) AS m3,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 4 ) AS m4,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 5 ) AS m5,
+            ( SELECT IFNULL( SUM( ih.net_total ), 0 ) FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 6 ) AS m6 
+        FROM
+        DUAL
+        ");
+
+        $data[] = $res->row()->m1;
+        $data[] = $res->row()->m2;
+        $data[] = $res->row()->m3;
+        $data[] = $res->row()->m4;
+        $data[] = $res->row()->m5;
+        $data[] = $res->row()->m6;
+
+        return $data;
+    }
+
+    public function get_data_for_dashboard(){
+
+        $res = $this->db->query("
+        SELECT IFNULL( SUM( ih.net_total ), 0 ) as sales FROM invoice_header AS ih WHERE MONTH ( ih.invoice_date )= 5
+        ");
+
+        $data['total_sales'] = $res->row()->sales;
+
+        $res = $this->db->query("
+            SELECT COUNT(*) as total_items FROM item_master WHERE MONTH(last_modified_at) =5 
+        ");
+
+        $data['total_items'] = $res->row()->total_items;
+
+        $res = $this->db->query("
+            SELECT COUNT(*) as invoices FROM invoice_header WHERE MONTH(last_modified_at) =5 
+        ");
+
+        $data['total_invoices'] = $res->row()->invoices;
+
+        return $data;
+    }
+
 }
