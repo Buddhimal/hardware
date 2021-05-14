@@ -101,9 +101,15 @@ class MModel extends CI_Model
     public function get_item_list()
     {
         $result = $this->db
-            ->select("*")
-            ->from('item_master')
-            ->get();
+            ->query("SELECT DISTINCT
+                        item_master.item_code, 
+                        item_master.item_name
+                    FROM
+                        inventory
+                        INNER JOIN
+                        item_master
+                        ON 
+                            inventory.item_id = item_master.id");
 
         return $result;
     }
