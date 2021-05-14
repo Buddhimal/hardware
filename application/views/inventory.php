@@ -110,7 +110,7 @@
                                         <td><?php echo $row->sku_code; ?></td>
                                         <td><?php echo $row->qty; ?></td>
                                         <td><?php echo $row->purchased_price; ?></td>
-                                        <td><?php echo $row->sku_name; ?></td>
+                                        <td><?php echo $row->unit_type; ?></td>
                                         <td><?php echo $row->selling_price; ?></td>
                                         </tr>
                                     <?php }
