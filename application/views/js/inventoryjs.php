@@ -43,6 +43,12 @@
       selectOtherMonths: true
     });
 
+      var from_date= "<?php echo isset($_GET['from']) ?$_GET['from'] : "" ?>"
+      var to_date= "<?php echo isset($_GET['to']) ?$_GET['to'] : "" ?>"
+
+      $("#from").val(from_date);
+
+
     $('#search_by').change(function(sender,args){
       if(sender.target.value == "Item"){
           $('.cbItem').css('display','inline');
@@ -55,6 +61,7 @@
        
     });
       $( "#to" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+      $("#to").val(to_date);
 
     $('#example1_info').css('display','none');
   });

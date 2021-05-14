@@ -37,11 +37,11 @@ class Dashboard extends CI_Controller
 
     public function inventory()
     {
-
         $param_data["from"] = $this->input->get_post('from');
         $param_data["to"] = $this->input->get_post('to');
         $param_data["search_by"] = $this->input->get_post('search_by');
         $param_data["param"] = $this->input->get_post('param');
+        $param_data["param2"] = $this->input->get_post('param2');
 
         $object['controller'] = $this;
         $object['active_tab'] = "Inventory";
