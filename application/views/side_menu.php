@@ -193,7 +193,16 @@ if (!isset($active_main_tab))
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item has-treeview ">
+                    <a href="<?php echo base_url() ?>dashboard/inventoryreport"
+                       class="nav-link <?php if ($active_tab == 'inventoryreport') echo "active" ?>">
+                        <i class="nav-icon fa fa-shopping-cart"></i>
+                        <p>
+                            Inventory Report
+                        </p>
+                    </a>
+                </li>
+                
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
