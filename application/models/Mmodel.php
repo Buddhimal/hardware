@@ -132,6 +132,7 @@ class MModel extends CI_Model
                                         im.item_code,
                                         im.item_name,
                                         im.unit_type,   
+                                        im.re_order_level,   
                                         sku.sku_code,
                                         sku.sku_name,
                                         inv.qty,
@@ -149,14 +150,11 @@ class MModel extends CI_Model
         if (($param_data['to'] !=''))
             $query .= " AND inv.date_purchased <= '$to'";
         if (isset($type) && $type == 'price')
-            $query .= " AND inv.purchased_price LIKE '$param2'";
+            $query .= " AND inv.selling_price LIKE '%$param2%'";
         if (isset($type) && $type == 'item')
             $query .= " AND im.item_code LIKE '%$param%'";
 
         $result = $this->db->query($query);
-
-//        var_dump($this->db->last_query());
-//        die();
 
         return $result;
     }

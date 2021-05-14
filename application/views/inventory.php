@@ -70,7 +70,7 @@
                                                 <?php }
                                                 ?>
                                             </select>
-                                            <input type="text" class="form-control txtPrice" id="param1"
+                                            <input type="text" class="form-control txtPrice" id="param2"
                                                    placeholder="Price"
                                                    style="display:none;" name="param2"/>
                                         </div>
@@ -109,7 +109,7 @@
                                         <td><?php echo $row->sku_name; ?></td>
                                         <td><?php echo $row->sku_code; ?></td>
                                         <td><?php echo $row->qty; ?></td>
-                                        <td><?php echo $row->purchased_price; ?></td>
+                                        <td><?php echo $row->re_order_level; ?></td>
                                         <td><?php echo $row->unit_type; ?></td>
                                         <td><?php echo $row->selling_price; ?></td>
                                         </tr>
