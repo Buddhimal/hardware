@@ -305,6 +305,21 @@ class Dashboard extends CI_Controller
         $this->load->view('js/salesreportjs');
     }
 
+    public function inventoryreport()
+    {
+        $object['controller'] = $this;
+        $object['active_tab'] = "inventoryreport";
+        $object['title'] = "Inventory Report";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+
+        $this->load->view('inventoryreport');
+        $this->load->view('footer');
+        $this->load->view('js/inventoryreportjs');
+    }
+
+
     public function save_transaction()
     {
         $header['invoice_number'] = $this->input->post('invoice_number');
