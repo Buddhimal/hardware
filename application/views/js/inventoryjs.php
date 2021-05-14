@@ -50,7 +50,7 @@
 
 
     $('#search_by').change(function(sender,args){
-      if(sender.target.value == "Item"){
+      if(sender.target.value == "item"){
           $('.cbItem').css('display','inline');
           $('.txtPrice').css('display','none');
       }
