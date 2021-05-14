@@ -314,7 +314,8 @@ class Dashboard extends CI_Controller
         $this->load->view('top_header');
         $this->load->view('side_menu');
 
-        $this->load->view('inventoryreport');
+        $data["inventory_data"] = $this->mmodel->get_inventory_report();
+        $this->load->view('inventoryreport',$data);
         $this->load->view('footer');
         $this->load->view('js/inventoryreportjs');
     }

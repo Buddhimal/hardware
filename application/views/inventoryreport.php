@@ -52,28 +52,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>11001</td>
-                  <td>Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>11002</td>
-                  <td>Internet
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>5</td>
-                </tr>
+                <?php foreach ($inventory_data->result() as $sales) { ?>
+                    <tr>
+                        <td><?php echo $sales->item_code?></td>
+                        <td><?php echo $sales->item_name?></td>
+                        <td><?php echo $sales->sku_name?></td>
+                        <td><?php echo $sales->sku_code?></td>
+                        <td><?php echo $sales->qty?></td>
+                        <td><?php echo $sales->re_order_level?></td>
+                        <td><?php echo $sales->unit_type?></td>
+                        <td><?php echo number_format($sales->selling_price,2,'.',',')?></td>
+                    </tr>
+                <?php } ?>
                 
               </table>
             </div>
