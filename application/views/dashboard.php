@@ -28,7 +28,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Weekly Sales</span>
                                 <span class="info-box-number">
-                                    25
+                                    <?php echo number_format($sales_data["total_sales"],2,'.',',') ?>
                                 </span>
                             </div>
  
@@ -40,7 +40,7 @@
  
                             <div class="info-box-content">
                                 <span class="info-box-text">New Items</span>
-                                <span class="info-box-number">4</span>
+                                <span class="info-box-number"><?php echo $sales_data["total_items"]?></span>
                             </div>
  
                         </div>
@@ -55,7 +55,8 @@
  
                             <div class="info-box-content">
                                 <span class="info-box-text">Cash Invoices</span>
-                                <span class="info-box-number">10</span>
+                                <span class="info-box-number"><?php echo $sales_data["total_invoices"]?></span>
+
                             </div>
  
                         </div>
@@ -66,7 +67,7 @@
  
                             <div class="info-box-content">
                                 <span class="info-box-text">Credit Invoices</span>
-                                <span class="info-box-number">15</span>
+                                <span class="info-box-number">0</span>
                             </div>
  
                         </div>
@@ -82,24 +83,24 @@
                             <div class="card-body">
  
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="position-relative mb-4">
-                                            <canvas id="supplierChart" height="200"></canvas>
+                                            <canvas id="supplierChart" height="100"></canvas>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col-sm-4"><i class="fas fa-circle text-success">&nbsp;&nbsp;</i>Active</div>
-                                            <div class="col-sm-4" style="text-align:center;">55</div>
-                                            <div class="col-sm-4">76%</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4"><i class="fas fa-circle text-danger"></i>&nbsp;&nbsp;Inactive</div>
-                                            <div class="col-sm-4" style="text-align:center;">15</div>
-                                            <div class="col-sm-4">24%</div>
-                                        </div>
- 
-                                    </div>
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-sm-4"><i class="fas fa-circle text-success">&nbsp;&nbsp;</i>Active</div>-->
+<!--                                            <div class="col-sm-4" style="text-align:center;">55</div>-->
+<!--                                            <div class="col-sm-4">76%</div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-sm-4"><i class="fas fa-circle text-danger"></i>&nbsp;&nbsp;Inactive</div>-->
+<!--                                            <div class="col-sm-4" style="text-align:center;">15</div>-->
+<!--                                            <div class="col-sm-4">24%</div>-->
+<!--                                        </div>-->
+<!-- -->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>

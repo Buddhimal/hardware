@@ -34,7 +34,7 @@
                 'Navigator',
             ],
             datasets: [{
-                data: [15, 55],
+                data: [15, 55, 10],
                 backgroundColor: ['#f56954', '#00a65a'],
             }]
         }
@@ -66,11 +66,11 @@
         var salesChart = new Chart($salesChart, {
             type: 'bar',
             data: {
-                labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+                labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN'],
                 datasets: [{
                     backgroundColor: '#007bff',
                     borderColor: '#007bff',
-                    data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+                    data: <?php echo json_encode($total_sales)?>
                 }
                 ]
             },
@@ -182,7 +182,7 @@
  
  
     function frequentlyPurchasedItemsChart(salesAnalysisChart) {
- 
+
         var ticksStyle = {
             fontColor: '#495057',
             fontStyle: 'bold'
@@ -194,11 +194,12 @@
         var salesChart = new Chart($salesChart, {
             type: 'bar',
             data: {
-                labels: ['Item1', 'Item2', 'Item3', 'Item4', 'Item5', 'Item6', 'Item7'],
+                labels: <?php echo json_encode($item_sales["names"])?>,
                 datasets: [{
-                    backgroundColor: ['#007bff', '#f56954', '#00a65a'],
+                    // backgroundColor: ['#007bff', '#f56954', '#00a65a'],
+                    backgroundColor: "#f56954",
                     borderColor: '#007bff',
-                    data: [1000, 2000, 3000]
+                    data: <?php echo json_encode($item_sales["values"])?>
                 }
                 ]
             },
