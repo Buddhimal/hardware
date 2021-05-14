@@ -106,8 +106,8 @@
                                         <tr>
                                         <td><?php echo $row->item_code; ?></td>
                                         <td><?php echo $row->item_name; ?></td>
+                                        <td><?php echo $row->sku_name; ?></td>
                                         <td><?php echo $row->sku_code; ?></td>
-                                        <td><?php echo $row->date_purchased; ?></td>
                                         <td><?php echo $row->qty; ?></td>
                                         <td><?php echo $row->purchased_price; ?></td>
                                         <td><?php echo $row->sku_name; ?></td>
