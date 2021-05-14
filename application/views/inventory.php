@@ -33,7 +33,8 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">From Date</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="from" placeholder=""
-                                                   name="from">
+                                                   name="from"
+                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -61,18 +62,17 @@
                                         <div class="col-sm-8">
                                             <select id="param" class="form-control cbItem" style="display:inline;"
                                                     name="param">
+                                                <option value="">Select</option>
                                                 <?php
                                                 foreach ($items->result() as $row) {
                                                     ?>
-                                                    <tr>
                                                         <option><?php echo $row->item_code; ?></option>
-                                                    </tr>
                                                 <?php }
                                                 ?>
                                             </select>
                                             <input type="text" class="form-control txtPrice" id="param1"
                                                    placeholder="Price"
-                                                   style="display:none;" name="param"/>
+                                                   style="display:none;" name="param2"/>
                                         </div>
                                         <div class="col-sm-4">
                                             <input type="submit" class="form-control btn-secondary" placeholder="Email"

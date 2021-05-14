@@ -125,6 +125,7 @@ class MModel extends CI_Model
         $to = $param_data["to"];
         $type = $param_data["search_by"];
         $param = $param_data["param"];
+        $param2 = $param_data["param2"];
 
         $query = "
                                     SELECT
@@ -142,17 +143,19 @@ class MModel extends CI_Model
                                         INNER JOIN item_sku AS sku ON inv.item_sku_id = sku.id 
                                         AND im.item_sku_id = sku.id ";
 
-        if (isset($param_data['from']))
+        if (($param_data['from'] !=''))
             $query .= " AND inv.date_purchased >= '$from'";
-        if (isset($param_data['to']))
+        if (($param_data['to'] !=''))
             $query .= " AND inv.date_purchased <= '$to'";
         if (isset($type) && $type == 'price')
-            $query .= " AND inv.purchased_price = '$param'";
+            $query .= " AND inv.purchased_price LIKE '$param2'";
         if (isset($type) && $type == 'item')
             $query .= " AND im.item_code LIKE '%$param%'";
 
-
         $result = $this->db->query($query);
+
+//        var_dump($this->db->last_query());
+//        die();
 
         return $result;
     }
