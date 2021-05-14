@@ -49,8 +49,7 @@
                                     <div class="form-group row">
 
                                         <div class="col-sm-4"></div>
-                                        <div class="col-sm-4 col-form-label" style="text-align:center;">Update
-                                            Supplier
+                                        <div class="col-sm-4 col-form-label" style="text-align:center;">Add items to Inventory
                                         </div>
                                         <div class="col-sm-4"></div>
 
