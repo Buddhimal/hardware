@@ -92,7 +92,7 @@
                                             <td><?php echo $item->item_name ?></td>
                                             <td><?php echo $item->supplier_name ?></td>
                                             <td><?php echo $item->sku_name ?></td>
-                                            <td><?php echo $item->status ?></td>
+                                            <td> <span class="right badge <?php echo $item->status ? "badge-success" :"badge-danger" ?>"><?php echo $item->status ? "Active" :"In-active" ?></span> </td>
                                             <td><span class="fa fa-pen" onclick="alert();"></span></td>
                                         </tr>
 
