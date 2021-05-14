@@ -160,7 +160,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>item_list"
                        class="nav-link <?php if ($active_tab == 'item_list') echo "active" ?>">
-                        <i class="nav-icon fa fa-hourglass-start"></i>
+                        <i class="nav-icon fa fa-plus"></i>
                         <p>
                             Item List
                         </p>
@@ -169,7 +169,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>itemsaleshistory"
                        class="nav-link <?php if ($active_tab == 'Itemsaleshistory') echo "active" ?>">
-                        <i class="nav-icon fa fa-hourglass-start"></i>
+                        <i class="nav-icon fa fa-list-alt"></i>
                         <p>
                             Item Sales History
                         </p>
@@ -178,7 +178,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>dashboard/salestransaction"
                        class="nav-link <?php if ($active_tab == 'Salestransaction') echo "active" ?>">
-                        <i class="nav-icon fa fa-shopping-cart"></i>
+                        <i class="nav-icon fa fa-list"></i>
                         <p>
                             Sales Transaction
                         </p>
@@ -187,7 +187,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>dashboard/salesreport"
                        class="nav-link <?php if ($active_tab == 'salesreport') echo "active" ?>">
-                        <i class="nav-icon fa fa-shopping-cart"></i>
+                        <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Sales Report
                         </p>
@@ -196,7 +196,7 @@ if (!isset($active_main_tab))
                 <li class="nav-item has-treeview ">
                     <a href="<?php echo base_url() ?>dashboard/inventoryreport"
                        class="nav-link <?php if ($active_tab == 'inventoryreport') echo "active" ?>">
-                        <i class="nav-icon fa fa-shopping-cart"></i>
+                        <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Inventory Report
                         </p>
