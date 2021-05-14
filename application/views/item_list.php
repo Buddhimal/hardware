@@ -62,7 +62,7 @@
 
                     </div>
                     <div class="col-sm-2">
-                        <a href="<?php echo base_url()?>item_create" class="btn btn-dark" >Add Items</a>
+                        <a href="<?php echo base_url()?>item_create" class="btn btn-dark" >Create Item</a>
                     </div>
 
 
