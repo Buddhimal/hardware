@@ -51,8 +51,8 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Search by</label>
                                         <div class="col-sm-8">
                                             <select id="search_by" class="form-control" name="search_by">
-                                                <option>item</option>
-                                                <option>price</option>
+                                                <option>Item</option>
+                                                <option>Price</option>
                                             </select>
                                         </div>
                                     </div>
