@@ -375,4 +375,40 @@ class MModel extends CI_Model
                                         sku.sku_name
         ");
     }
+
+    public function get_inventory_report(){
+
+        return $this->db->query(
+            "SELECT
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                im.unit_type, 
+                sku.sku_code, 
+                sku.sku_name, 
+                SUM(i.qty) as qty, 
+                i.selling_price, 
+                im.re_order_level
+            FROM
+                item_master AS im
+                INNER JOIN
+                item_sku AS sku
+                ON 
+                    im.item_sku_id = sku.id
+                INNER JOIN
+                inventory AS i
+                ON 
+                    im.id = i.item_id AND
+                    sku.id = i.item_sku_id
+            GROUP BY
+                im.id, 
+                im.item_code, 
+                im.item_name, 
+                im.unit_type, 
+                sku.sku_code, 
+                sku.sku_name, 
+                i.selling_price, 
+                im.re_order_level"
+        );
+    }
 }
