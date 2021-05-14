@@ -342,4 +342,37 @@ class MModel extends CI_Model
                     WHERE i.item_code LIKE '%$item_code%'        
                             ");
     }
+
+    public function get_item_sales_history(){
+        return $this->db->query("
+                                    SELECT
+                                        im.id, 
+                                        im.item_code, 
+                                        im.item_name, 
+                                        SUM(il.qty) AS qty, 
+                                        SUM(il.total_price) AS total_price, 
+                                        im.unit_type,
+                                        il.unit_price,
+                                        sku.sku_code, 
+                                        sku.sku_name
+                                    FROM
+                                        item_master AS im
+                                        INNER JOIN
+                                        item_sku AS sku
+                                        ON 
+                                            im.item_sku_id = sku.id
+                                        INNER JOIN
+                                        invoice_lines AS il
+                                        ON 
+                                            il.item_code = im.item_code
+                                        GROUP BY
+                                        im.id, 
+                                        im.item_code, 
+                                        im.item_name, 
+                                        il.unit_price, 
+                                        im.unit_type, 
+                                        sku.sku_code, 
+                                        sku.sku_name
+        ");
+    }
 }
