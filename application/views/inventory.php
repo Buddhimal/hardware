@@ -33,7 +33,8 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">From Date</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="from" placeholder=""
-                                                   name="from">
+                                                   name="from"
+                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -50,8 +51,8 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Search by</label>
                                         <div class="col-sm-8">
                                             <select id="search_by" class="form-control" name="search_by">
-                                                <option>item</option>
-                                                <option>price</option>
+                                                <option value="item">Item</option>
+                                                <option value="price">Price</option>
                                             </select>
                                         </div>
                                     </div>
@@ -61,18 +62,17 @@
                                         <div class="col-sm-8">
                                             <select id="param" class="form-control cbItem" style="display:inline;"
                                                     name="param">
+                                                <option value="">Select</option>
                                                 <?php
                                                 foreach ($items->result() as $row) {
                                                     ?>
-                                                    <tr>
                                                         <option><?php echo $row->item_code; ?></option>
-                                                    </tr>
                                                 <?php }
                                                 ?>
                                             </select>
-                                            <input type="text" class="form-control txtPrice" id="param1"
+                                            <input type="text" class="form-control txtPrice" id="param2"
                                                    placeholder="Price"
-                                                   style="display:none;" name="param"/>
+                                                   style="display:none;" name="param2"/>
                                         </div>
                                         <div class="col-sm-4">
                                             <input type="submit" class="form-control btn-secondary" placeholder="Email"
@@ -106,11 +106,11 @@
                                         <tr>
                                         <td><?php echo $row->item_code; ?></td>
                                         <td><?php echo $row->item_name; ?></td>
-                                        <td><?php echo $row->sku_code; ?></td>
-                                        <td><?php echo $row->date_purchased; ?></td>
-                                        <td><?php echo $row->qty; ?></td>
-                                        <td><?php echo $row->purchased_price; ?></td>
                                         <td><?php echo $row->sku_name; ?></td>
+                                        <td><?php echo $row->sku_code; ?></td>
+                                        <td><?php echo $row->qty; ?></td>
+                                        <td><?php echo $row->re_order_level; ?></td>
+                                        <td><?php echo $row->unit_type; ?></td>
                                         <td><?php echo $row->selling_price; ?></td>
                                         </tr>
                                     <?php }

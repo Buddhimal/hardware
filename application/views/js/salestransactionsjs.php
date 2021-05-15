@@ -16,11 +16,6 @@
     };
 
     var myTableArray = [];
-    // var total = 0;
-    // var qty = 1;
-    // var discount = 0;
-    // var discountPct = 0;
-    // var totalAfterDiscount = 0;
 
     let rowCount = 0;
 
@@ -33,11 +28,16 @@
         let item_discount = $("#item_discount");
         let discountTotal = $("#total_discount");
         let qtyTotal = $("#total_qty");
+        let netTotal = $('#net_total');
+
+
+        discountTotal.val(discountTotal.val() - (( $('#'+parentId+'> .selling_price').html() ) * ( $('#'+parentId+'> .qty').html() ) * ( $('#'+parentId+'> .discount_pct').html() )/100) )
 
 
         totalQty.val(totalQty.val() - $('#'+parentId+'> .qty').html());
+        // discountTotal.val(discountTotal.val() - (( $('#'+parentId+'> .selling_price').html() ) * ( $('#'+parentId+'> .discount_pct').html() )/100) )
         grossTotal.val(grossTotal.val() - ( $('#'+parentId+'> .selling_price').html() * $('#'+parentId+'> .qty').html()));
-        $('#net_total').val(grossTotal.val() - $('#total_discount').val());
+        netTotal.val(netTotal.val() - ( $('#'+parentId+'> .total_value').html() ));
 
         $('#item' + itemCode).remove();
 
@@ -175,6 +175,9 @@
                     this.$txt_net_total.val(Number(this.$txt_gross_total.val()) - Number(this.$txt_total_discount.val()));
 
                     loadingWidget.hide();
+
+                    this.$item_qty.val('');
+                    this.$item_discount.val('');
                 },
                 saveTranRecords: function() {
 
@@ -197,7 +200,7 @@
                             cus_name: this.$cusName.val(),
                             cus_address: this.$cusAddress.val(),
                             cus_tel: this.$cusTel.val(),
-                            gross_total: this.$grossTotal,
+                            gross_total: this.$txt_gross_total.val(),
                             total_qty: this.$qtyTotal,
                             tax_amt: this.$txt_tax_amt.val(),
                             total_discount: this.$txt_total_discount.val(),

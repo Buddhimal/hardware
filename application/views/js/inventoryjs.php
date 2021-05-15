@@ -43,8 +43,14 @@
       selectOtherMonths: true
     });
 
+      var from_date= "<?php echo isset($_GET['from']) ?$_GET['from'] : "" ?>"
+      var to_date= "<?php echo isset($_GET['to']) ?$_GET['to'] : "" ?>"
+
+      $("#from").val(from_date);
+
+
     $('#search_by').change(function(sender,args){
-      if(sender.target.value == "Item"){
+      if(sender.target.value == "item"){
           $('.cbItem').css('display','inline');
           $('.txtPrice').css('display','none');
       }
@@ -55,7 +61,15 @@
        
     });
       $( "#to" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+      $("#to").val(to_date);
 
     $('#example1_info').css('display','none');
+
+      $('#search_by').val("<?php echo isset($_GET['search_by']) ?$_GET['search_by'] : "" ?>");
+      $('#search_by').trigger("change");
+
+    $('#param').val("<?php echo isset($_GET['param']) ?$_GET['param'] : "" ?>");
+    $('#param2').val("<?php echo isset($_GET['param2']) ?$_GET['param2'] : "" ?>");
+
   });
 </script>
