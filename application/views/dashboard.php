@@ -26,7 +26,7 @@
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-industry"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Weekly Sales</span>
+                                <span class="info-box-text">Total Sales</span>
                                 <span class="info-box-number">
                                     <?php echo number_format($sales_data["total_sales"], 2, '.', ',') ?>
                                 </span>
