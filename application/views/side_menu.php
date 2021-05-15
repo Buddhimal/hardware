@@ -60,25 +60,25 @@ if (!isset($active_main_tab))
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link <?php if ($active_tab == 'invoice') echo "active" ?>">
-                        <i class="nav-icon fas fa-list-alt"></i>
-                        <p>
-                            Invoice
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ">
-                        <li class="nav-item">
-                            <a href="<?php echo base_url() ?>invoice"
-                               class="nav-link <?php if ($active_tab == 'Invoice') echo "active" ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Generate Invoice</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
+<!--                <li class="nav-item has-treeview ">-->
+<!--                    <a href="#" class="nav-link --><?php //if ($active_tab == 'invoice') echo "active" ?><!--">-->
+<!--                        <i class="nav-icon fas fa-list-alt"></i>-->
+<!--                        <p>-->
+<!--                            Invoice-->
+<!--                            <i class="right fas fa-angle-left"></i>-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    <ul class="nav nav-treeview ">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="--><?php //echo base_url() ?><!--invoice"-->
+<!--                               class="nav-link --><?php //if ($active_tab == 'Invoice') echo "active" ?><!--">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Generate Invoice</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!---->
+<!--                    </ul>-->
+<!--                </li>-->
 
                 <li class="nav-item has-treeview <?php if ($active_main_tab == 'add_sku' || $active_tab == 'view_sku') echo "menu-open" ?> ">
                     <a href="#"
