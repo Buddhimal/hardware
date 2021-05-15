@@ -203,6 +203,15 @@ if (!isset($active_main_tab))
                     </a>
                 </li>
                 
+                <li class="nav-item has-treeview ">
+                    <a href="<?php echo base_url() ?>dashboard/saleshistoryreport"
+                       class="nav-link <?php if ($active_tab == 'saleshistoryreport') echo "active" ?>">
+                        <i class="nav-icon fa fa-shopping-cart"></i>
+                        <p>
+                            Sales History Report
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

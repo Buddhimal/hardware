@@ -54,6 +54,7 @@ $route['inventory'] = 'dashboard/inventory';
 $route['item_create'] = 'dashboard/item_create';
 $route['item_list'] = 'dashboard/item_list';
 $route['salesreport'] = 'dashboard/salesreport';
+$route['saleshistoryreport'] = 'dashboard/saleshistoryreport';
 $route['inventoryreport'] = 'dashboard/inventoryreport';
 $route['itemupdate'] = 'dashboard/add_items_inventory';
 $route['load_invoice_list'] = 'dashboard/invoicelist';

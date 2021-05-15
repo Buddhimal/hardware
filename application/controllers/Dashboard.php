@@ -309,6 +309,19 @@ class Dashboard extends CI_Controller
         $this->load->view('js/salesreportjs');
     }
 
+    public function saleshistoryreport()
+    {
+        $object['controller'] = $this;
+        $object['active_tab'] = "saleshistoryreport";
+        $object['title'] = "Sales History Report";
+        $this->load->view('header', $object);
+        $this->load->view('top_header');
+        $this->load->view('side_menu');
+        $this->load->view('saleshistoryreport');
+        $this->load->view('footer');
+        $this->load->view('js/saleshistoryreportjs');
+    }
+    
     public function inventoryreport()
     {
         $object['controller'] = $this;
