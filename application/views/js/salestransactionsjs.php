@@ -200,7 +200,7 @@
                             cus_name: this.$cusName.val(),
                             cus_address: this.$cusAddress.val(),
                             cus_tel: this.$cusTel.val(),
-                            gross_total: this.$grossTotal,
+                            gross_total: this.$txt_gross_total.val(),
                             total_qty: this.$qtyTotal,
                             tax_amt: this.$txt_tax_amt.val(),
                             total_discount: this.$txt_total_discount.val(),
