@@ -9,11 +9,17 @@
 <!-- <script src="<?php echo base_url()?>dist/js/pages/dashboard2.js"></script> -->
  
 <script src="<?php echo base_url()?>dist/js/pages/dashboard3.js"></script>
- 
+
 <script>
- 
-    var pieChartCanvas = $('#supplierChart').get(0).getContext('2d');
-    designPieChart(pieChartCanvas);
+
+    // The Calender
+    $('#calendar').datetimepicker({
+        format: 'L',
+        inline: true
+    })
+
+    // var pieChartCanvas = $('#supplierChart').get(0).getContext('2d');
+    // designPieChart(pieChartCanvas);
     var $salesChart = $('#salesAnalysisChart')
     salesAnalysisChart($salesChart);
     var salesChartCanvas = document.getElementById('inventoryStockAnalysisChart').getContext('2d');
