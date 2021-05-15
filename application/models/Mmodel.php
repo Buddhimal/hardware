@@ -482,7 +482,7 @@ class MModel extends CI_Model
         $data['total_sales'] = $res->row()->sales;
 
         $res = $this->db->query("
-            SELECT COUNT(*) as total_items FROM item_master WHERE MONTH(last_modified_at) =5 
+            SELECT COUNT(*) as total_items FROM item_master WHERE MONTH(last_modified_at) =5 and status=1
         ");
 
         $data['total_items'] = $res->row()->total_items;
