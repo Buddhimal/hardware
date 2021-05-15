@@ -208,7 +208,7 @@
                                         <!-- /.card-body -->
                                         <div class="card-footer">
                                             <button type="submit" id="btn_save_tans" class="btn btn-info full-width">Save</button>
-                                            <button type="button" class="btn btn-default float-right">Cancel</button>
+                                            <a href="<?php echo base_url()?>dashboard" type="button" class="btn btn-default float-right">Cancel</a>
                                         </div>
                                         <!-- /.card-footer -->
                                     </div>
