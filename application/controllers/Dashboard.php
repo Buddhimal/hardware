@@ -56,6 +56,19 @@ class Dashboard extends CI_Controller
 	$this->load->view('create_SKU');
 	$this->load->view('footer');
 	}
+	public function CreateItem()
+	{
+	$object['controller'] = $this;
+	$object['active_tab'] = "createSKU";
+	$object['title'] = "create_SKU";
+	$this->load->view('header',$object);
+	$this->load->view('top_header');
+	$this->load->view('side_menu');
+	$this->load->view('create_Item');
+	$this->load->view('footer');
+	}
+
+
 
 
 }

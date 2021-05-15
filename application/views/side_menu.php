@@ -91,7 +91,24 @@ if(!isset($active_main_tab))
 
 					</ul>
 				</li>
+				<li class="nav-item has-treeview <?php if($active_main_tab=='Administration') echo "menu-open" ?> ">
+					<a href="#" class="nav-link <?php if($active_main_tab=='Administration') echo "active" ?>">
+						<i class="nav-icon fas fa-cogs"></i>
+						<p>
+							Items
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview ">
+						<li class="nav-item">
+							<a href="<?php echo base_url()?>dashboard/CreateItem" class="nav-link <?php if($active_tab=='CreateItem') echo "active" ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Create Item</p>
+							</a>
+						</li>
 
+					</ul>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
