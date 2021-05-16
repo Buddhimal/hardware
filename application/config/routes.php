@@ -50,5 +50,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+$route['inventory'] = 'dashboard/inventory';
+$route['item_create'] = 'dashboard/item_create';
+$route['item_list'] = 'dashboard/item_list';
+$route['salesreport'] = 'dashboard/salesreport';
+$route['inventoryreport'] = 'dashboard/inventoryreport';
+$route['itemupdate'] = 'dashboard/add_items_inventory';
+$route['load_invoice_list'] = 'dashboard/invoicelist';
+$route['load_invoiceModal_list'] = 'dashboard/myModal';
+$route['itemsaleshistory'] = 'dashboard/itemsaleshistory';
+$route['save_item'] = 'dashboard/save_item';
+$route['load_salestransaction'] = 'dashboard/salestransaction';
+$route['save_transaction'] = 'dashboard/save_transaction';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['invoice'] = 'dashboard/create_invoice';
+$route['sales_history'] = 'dashboard/SalesHistory';
+$route['add_sku'] = 'dashboard/add_sku';
+$route['save_sku'] = 'dashboard/save_sku';
+$route['view_sku'] = 'dashboard/view_sku';
+$route['save_item_inventory'] = 'dashboard/save_item_inventory';
+
+
+//ajax routes
+$route['get_item_details'] = 'dashboard/get_item_details';
