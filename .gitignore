@@ -1,7 +1,7 @@
-application/config/database.php
-application/config/config.php
-/.htaccess
-index.php
+#application/config/database.php
+#application/config/config.php
+#/.htaccess
+#index.php
 
 application/logs/*
 !application/logs/index.html
