@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '52.66.15.94',
 //	'port' => '3306',
-	'username' => 'buddhimal_root',
-	'password' => 'Buddhimal@123',
+	'username' => 'siteadmin',
+	'password' => 'siteadmin@123',
 	'database' => 'hardware',
 //    'hostname' => 'localhost',
 //	'username' => 'root',
